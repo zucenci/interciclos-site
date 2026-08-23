@@ -1,0 +1,46 @@
+/* Selo "10 anos": o fundo gira, o letreiro fica parado.
+   A rotação usa a propriedade `rotate` com `transform-box: view-box`, para o
+   eixo cair no centro do desenho (e não na caixa de cada traçado). */
+
+.selo {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(43, 39, 35, 0.22));
+}
+
+.fundo {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: girarSelo 48s linear infinite;
+}
+
+@keyframes girarSelo {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+.disco {
+  fill: var(--cor-azul);
+}
+
+.anel {
+  fill: var(--cor-bronze);
+}
+
+.numero {
+  fill: var(--cor-bronze);
+}
+
+.anos {
+  fill: var(--cor-off-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fundo {
+    animation: none;
+  }
+}

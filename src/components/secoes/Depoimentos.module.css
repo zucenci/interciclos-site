@@ -1,0 +1,76 @@
+.titulo {
+  margin-bottom: var(--e-9);
+  max-width: 26ch;
+}
+
+.marcos {
+  display: grid;
+  gap: var(--e-4);
+  max-width: 46ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.marco {
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.875rem);
+  font-weight: var(--peso-leve);
+  line-height: var(--lh-h3);
+  color: var(--txt-forte);
+}
+
+.marco:nth-child(odd) {
+  color: var(--cor-azul);
+}
+
+.marco:last-child {
+  margin-top: var(--e-3);
+  font-size: var(--t-lead);
+  font-family: var(--fonte-texto);
+  color: var(--txt-suave);
+}
+
+.citacoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--e-5);
+  margin-top: var(--e-10);
+}
+
+.citacaoItem {
+  display: flex;
+}
+
+.citacao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+  margin: 0;
+  padding: var(--e-6);
+  background-color: var(--sup-suave);
+  border-radius: var(--raio-grande);
+  border: 1px solid var(--linha);
+}
+
+.texto {
+  margin: 0;
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.autoria {
+  display: grid;
+  gap: 2px;
+  margin-top: auto;
+}
+
+.autor {
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semi);
+  color: var(--txt-forte);
+}
+
+.contexto {
+  font-size: var(--t-micro);
+  color: var(--txt-suave);
+}

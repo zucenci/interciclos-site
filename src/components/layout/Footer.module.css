@@ -1,0 +1,93 @@
+/* Estrutura: colunas de links em cima, linha legal, e a marca fechando a
+   página embaixo, ocupando toda a largura. */
+
+.rodape {
+  background-color: var(--sup-escura);
+  background-image: var(--grad-noite);
+  color: var(--txt-inverso-suave);
+  padding-top: var(--secao-y-curta);
+}
+
+.conteudo {
+  padding-bottom: var(--e-9);
+}
+
+.blocos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--e-7) var(--e-6);
+}
+
+.tituloBloco {
+  margin-bottom: var(--e-4);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-fendi);
+}
+
+.listaLinks {
+  display: grid;
+  gap: var(--e-3);
+}
+
+.link {
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-pequeno);
+  color: var(--txt-inverso-suave);
+  transition: color var(--dur-rapida) var(--ease-saida);
+}
+
+.link:hover {
+  color: var(--txt-inverso);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.endereco address {
+  font-style: normal;
+  font-size: var(--t-pequeno);
+  color: var(--txt-inverso-suave);
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding-block: var(--e-5) var(--e-7);
+  border-top: 1px solid var(--linha-escura);
+}
+
+.direitos,
+.desde {
+  font-size: var(--t-micro);
+  color: rgba(246, 242, 233, 0.5);
+  line-height: var(--lh-texto);
+}
+
+/* --- A marca no rodapé da página ---------------------------------------- */
+
+.marca {
+  padding-top: var(--e-7);
+  padding-bottom: var(--e-7);
+}
+
+.marcaLink {
+  display: block;
+  border-radius: var(--raio-pequeno);
+  opacity: 0.92;
+  transition: opacity var(--dur-media) var(--ease-saida);
+}
+
+.marcaLink:hover {
+  opacity: 1;
+}
+
+@media (max-width: 880px) {
+  .marca {
+    padding-top: var(--e-6);
+  }
+}

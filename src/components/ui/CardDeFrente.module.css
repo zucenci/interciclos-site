@@ -1,0 +1,106 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  padding: var(--e-7) var(--e-6) var(--e-6);
+  background-color: var(--sup-papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-grande);
+  transition:
+    border-color var(--dur-media) var(--ease-suave),
+    box-shadow var(--dur-media) var(--ease-suave),
+    transform var(--dur-media) var(--ease-suave);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset-inline: var(--e-6);
+  top: 0;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background-image: var(--grad-marca);
+  opacity: 0;
+  transition: opacity var(--dur-media) var(--ease-suave);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--linha-forte);
+  box-shadow: var(--sombra-media);
+  transform: translateY(-4px);
+}
+
+.card:hover::before,
+.card:focus-within::before {
+  opacity: 1;
+}
+
+.ancora {
+  border-color: rgba(150, 75, 54, 0.3);
+  background-image: linear-gradient(180deg, rgba(150, 75, 54, 0.05), transparent 45%);
+}
+
+.ancora::before {
+  opacity: 1;
+}
+
+.ordem {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.1em;
+  color: var(--txt-suave);
+}
+
+.nome {
+  font-size: var(--t-h4);
+  font-weight: var(--peso-medio);
+  line-height: var(--lh-h4);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--raio-grande);
+}
+
+.chamada {
+  font-size: var(--t-corpo);
+  font-weight: var(--peso-leve);
+  line-height: var(--lh-lead);
+  color: var(--cor-azul);
+}
+
+.resumo {
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.etiquetas {
+  margin-top: var(--e-2);
+}
+
+.acao {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  margin-top: auto;
+  padding-top: var(--e-5);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.02em;
+  color: var(--cor-azul);
+}
+
+.acao svg {
+  width: 1.05em;
+  height: 1.05em;
+  transition: transform var(--dur-media) var(--ease-suave);
+}
+
+.card:hover .acao svg {
+  transform: translateX(3px);
+}

@@ -1,0 +1,32 @@
+.revelar {
+  opacity: 0;
+  transition:
+    opacity var(--dur-lenta) var(--ease-suave),
+    transform var(--dur-lenta) var(--ease-suave);
+  will-change: opacity, transform;
+}
+
+.cima {
+  transform: translateY(22px);
+}
+
+.esquerda {
+  transform: translateX(-22px);
+}
+
+.nenhuma {
+  transform: none;
+}
+
+.visivel {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}

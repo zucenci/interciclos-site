@@ -1,0 +1,19 @@
+.atalho {
+  position: absolute;
+  top: var(--e-3);
+  left: var(--e-3);
+  z-index: calc(var(--z-header) + 10);
+  transform: translateY(-200%);
+  padding: var(--e-3) var(--e-5);
+  border-radius: var(--raio-pilula);
+  background-color: var(--cor-azul);
+  color: var(--txt-inverso);
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semi);
+  box-shadow: var(--sombra-media);
+  transition: transform var(--dur-rapida) var(--ease-saida);
+}
+
+.atalho:focus-visible {
+  transform: translateY(0);
+}

@@ -1,0 +1,84 @@
+/* Proporções tiradas do arquivo oficial da marca: tudo é medido a partir da
+   altura do símbolo (--tam-simbolo), como no lockup original. */
+
+.link {
+  display: inline-flex;
+  border-radius: var(--raio-pequeno);
+}
+
+.marca {
+  --tam-simbolo: 2.25em;
+
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--tam-simbolo) * 0.1337); /* respiro símbolo → letreiro */
+  line-height: 0;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--tam-simbolo) * 0.2);
+}
+
+.simbolo {
+  width: calc(var(--tam-simbolo) * 1.0231);
+  height: var(--tam-simbolo);
+  flex: none;
+  transition: transform var(--dur-media) var(--ease-suave);
+}
+
+.link:hover .simbolo {
+  transform: rotate(20deg);
+}
+
+.textos {
+  display: flex;
+  flex-direction: column;
+}
+
+.nome {
+  width: calc(var(--tam-simbolo) * 4.0057);
+  height: calc(var(--tam-simbolo) * 0.5885);
+}
+
+.designacao {
+  width: calc(var(--tam-simbolo) * 4.0057);
+  height: calc(var(--tam-simbolo) * 0.2356);
+  margin-top: calc(var(--tam-simbolo) * 0.1045); /* respiro nome → assinatura */
+}
+
+/* Formato apenas-símbolo: ocupa o espaço reservado pelo contexto. */
+.icone .simbolo {
+  width: 100%;
+  height: auto;
+}
+
+/* --- Tons ------------------------------------------------------------- */
+
+.cor .simbolo path,
+.cor .designacao path {
+  fill: var(--cor-bronze);
+}
+
+.cor .nome path {
+  fill: var(--cor-azul);
+}
+
+.branco path {
+  fill: var(--txt-inverso);
+}
+
+.tinta path {
+  fill: var(--cor-tinta);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simbolo {
+    transition: none;
+  }
+
+  .link:hover .simbolo {
+    transform: none;
+  }
+}

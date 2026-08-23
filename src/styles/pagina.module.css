@@ -1,0 +1,157 @@
+/* =========================================================================
+   Blocos de texto compartilhados pelas páginas internas.
+   Importado com `import estilos from '@/styles/pagina.module.css'`.
+   ========================================================================= */
+
+.tituloEstreito {
+  margin-bottom: var(--e-6);
+}
+
+.tituloEstrutura {
+  margin-bottom: var(--e-8);
+}
+
+.paragrafo {
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+  max-width: var(--largura-texto);
+}
+
+.paragrafo + .paragrafo {
+  margin-top: var(--e-4);
+}
+
+/* Faixa de chamada interna (destaque dentro de uma seção clara). */
+.faixaClinica {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-6);
+  padding: var(--e-7);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
+  background-image: linear-gradient(120deg, rgba(53, 83, 108, 0.06), rgba(150, 75, 54, 0.07));
+}
+
+.tituloFaixa {
+  font-size: var(--t-h3);
+  font-weight: var(--peso-normal);
+}
+
+.paragrafoFaixa {
+  margin-top: var(--e-3);
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+  max-width: 58ch;
+}
+
+.certificacao {
+  margin-top: var(--e-7);
+  padding: var(--e-5);
+  border-left: 2px solid var(--cor-terracota);
+  background-color: var(--sup-papel);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+  max-width: 62ch;
+}
+
+/* Blocos de dois públicos (Clínica Social). */
+.doisPublicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--e-5);
+}
+
+.publico {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  padding: var(--e-7);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
+  background-color: var(--sup-papel);
+  height: 100%;
+}
+
+.publicoRotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-azul);
+}
+
+.publicoTitulo {
+  font-size: var(--t-h3);
+  font-weight: var(--peso-leve);
+}
+
+.publicoParagrafo {
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.publicoAcao {
+  margin-top: auto;
+  padding-top: var(--e-4);
+}
+
+/* Bloco de encerramento com ênfase editorial. */
+.enfase {
+  display: grid;
+  gap: var(--e-3);
+  max-width: 48ch;
+  margin-top: var(--e-7);
+  padding-left: var(--e-5);
+  border-left: 2px solid var(--cor-terracota);
+  font-size: var(--t-lead);
+  font-weight: var(--peso-leve);
+  font-style: italic;
+  line-height: var(--lh-lead);
+  color: var(--txt-forte);
+}
+
+/* Estado vazio (agenda, publicações). */
+.estadoVazio {
+  max-width: 52ch;
+  padding: var(--e-8);
+  border: 1px dashed var(--linha-forte);
+  border-radius: var(--raio-xl);
+  background-color: var(--sup-suave);
+}
+
+.estadoVazioTitulo {
+  font-size: var(--t-h3);
+  font-weight: var(--peso-leve);
+}
+
+.estadoVazioParagrafo {
+  margin-top: var(--e-4);
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+/* Grade genérica de duas colunas para texto + apoio. */
+.duasColunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 1rem + 6vw, 6rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .duasColunas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.acaoDaSecao {
+  margin-top: var(--e-7);
+}

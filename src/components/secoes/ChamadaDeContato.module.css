@@ -1,0 +1,83 @@
+.secao {
+  padding-block: var(--e-6) var(--e-10);
+}
+
+/* Bloco flutuante com bordas arredondadas e sombra de elevação */
+.blocoFlutuante {
+  position: relative;
+  background-color: var(--cor-terracota);
+  border-radius: var(--raio-xl);
+  padding: clamp(2.5rem, 1.75rem + 3vw, 4.5rem) clamp(2rem, 1.5rem + 3vw, 4rem);
+  box-shadow: var(--sombra-alta);
+  overflow: hidden;
+}
+
+.conteudo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-6);
+}
+
+.texto {
+  max-width: 46ch;
+}
+
+.titulo {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+  color: var(--txt-inverso);
+  letter-spacing: var(--espaco-letra-titulo);
+}
+
+.paragrafo {
+  margin-top: var(--e-4);
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: rgba(246, 242, 233, 0.85);
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--e-4);
+  text-align: right;
+}
+
+.dados {
+  display: grid;
+  gap: var(--e-1);
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: rgba(246, 242, 233, 0.85);
+}
+
+@media (max-width: 900px) {
+  .conteudo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acoes {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 620px) {
+  .blocoFlutuante {
+    padding: var(--e-7) var(--e-5);
+    border-radius: var(--raio-grande);
+  }
+
+  .acoes {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}

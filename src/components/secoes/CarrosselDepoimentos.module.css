@@ -1,0 +1,399 @@
+/* =========================================================================
+   CarrosselDepoimentos — v4
+   Gestalt da Continuidade com esmaecimento por desfoque e transição suave.
+   ========================================================================= */
+
+/* --- Cabeçalho ----------------------------------------------------------- */
+
+.cabecalho {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: end;
+  margin-bottom: var(--e-8);
+}
+
+.cabecalhoTitulo {
+  max-width: 44ch;
+}
+
+.aspasDecorativas {
+  font-family: var(--fonte-texto);
+  font-size: 5rem;
+  line-height: 0.6;
+  color: var(--cor-terracota);
+  margin-bottom: var(--e-4);
+  display: block;
+  user-select: none;
+}
+
+.tituloSecao {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+  letter-spacing: var(--espaco-letra-titulo);
+  color: var(--cor-azul);
+}
+
+.listaBeneficios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listaBeneficios li {
+  position: relative;
+  padding-left: var(--e-4);
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.listaBeneficios li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 1px;
+  background-color: var(--cor-terracota);
+}
+
+/* --- Carrossel Slider ---------------------------------------------------- */
+
+.carrossel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-6);
+  width: 100%;
+}
+
+/* Container com máscara de esmaecimento: estado estático = borda esquerda 100% nítida */
+.janelaContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-block: var(--e-2);
+  /* Em repouso: borda esquerda totalmente limpa e nítida (#000 0%), esmaecimento só na direita */
+  mask-image: linear-gradient(to right, #000 0%, #000 76%, transparent 98%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 76%,
+    transparent 98%
+  );
+  transition:
+    mask-image 300ms var(--ease-suave),
+    -webkit-mask-image 300ms var(--ease-suave);
+
+  --largura-card: 62%;
+  --gap-trilho: var(--e-5);
+}
+
+/* APENAS durante o movimento de rotação (slide ativo): ativa o esmaecimento na borda esquerda */
+.janelaContainer[data-rotacionando='true'] {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 4.5%,
+    #000 76%,
+    transparent 98%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 4.5%,
+    #000 76%,
+    transparent 98%
+  );
+}
+
+/* Trilho deslizante com animação suave de transição */
+.trilho {
+  display: flex;
+  gap: var(--gap-trilho);
+  width: 100%;
+  transition: transform 540ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+/* Itens individuais no trilho */
+.itemCard {
+  flex: 0 0 var(--largura-card);
+  min-width: 0;
+}
+
+.itemVazando {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* --- Cards ---------------------------------------------------------------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+  height: 100%;
+  padding: var(--e-7) var(--e-6);
+  background-color: var(--sup-papel);
+  border-radius: var(--raio-grande);
+  border: 1px solid var(--linha);
+  transition:
+    border-color 540ms var(--ease-suave),
+    box-shadow 540ms var(--ease-suave),
+    transform 540ms var(--ease-suave),
+    opacity 540ms var(--ease-suave),
+    filter 540ms var(--ease-suave);
+}
+
+/* Card Destacado (Principal em foco) */
+.cardDestacado {
+  border-color: var(--cor-fendi);
+  box-shadow: var(--sombra-media);
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+}
+
+/* Cards Vazando (Secundários com desfoque e transparência suave) */
+.cardVazando {
+  opacity: 0.65;
+  border-color: var(--linha);
+  transform: scale(0.975);
+  filter: blur(0.5px);
+  transform-origin: left center;
+}
+
+.itemVazando:hover .cardVazando {
+  opacity: 0.88;
+  filter: blur(0px);
+  border-color: var(--cor-fendi);
+  transform: scale(0.99);
+}
+
+/* Autoria no rodapé do card */
+.autoria {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  margin-top: auto;
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--linha);
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-image: var(--grad-marca);
+  font-size: 0.875rem;
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.04em;
+  color: var(--txt-inverso);
+  overflow: hidden;
+}
+
+.autorInfo {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.autorNome {
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semi);
+  color: var(--txt-forte);
+  line-height: var(--lh-micro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.autorContexto {
+  font-size: var(--t-micro);
+  color: var(--cor-azul);
+  line-height: var(--lh-micro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Aspas inline no começo do texto */
+.aspasInline {
+  font-family: var(--fonte-texto);
+  font-size: 1.4em;
+  line-height: 1;
+  color: var(--cor-terracota);
+  margin-right: 0.15em;
+  vertical-align: -0.05em;
+  display: inline-block;
+  user-select: none;
+}
+
+/* Texto principal do depoimento */
+.textoCard {
+  font-size: var(--t-corpo);
+  font-weight: var(--peso-normal);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+  flex: 1;
+}
+
+/* --- Barra inferior: progresso + setas ----------------------------------- */
+
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-5);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--linha);
+}
+
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  flex: 1;
+}
+
+.progressoLinha {
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--linha);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressoPreenchimento {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  background-color: var(--cor-terracota);
+  border-radius: 2px;
+  transition: width var(--dur-lenta) var(--ease-suave);
+}
+
+.progressoTexto {
+  font-size: var(--t-micro);
+  color: var(--txt-suave);
+  white-space: nowrap;
+}
+
+/* Setas de navegação */
+.setas {
+  display: flex;
+  gap: var(--e-2);
+}
+
+.seta {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--linha-forte);
+  color: var(--txt-forte);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-rapida) var(--ease-saida),
+    border-color var(--dur-rapida) var(--ease-saida),
+    color var(--dur-rapida) var(--ease-saida),
+    transform var(--dur-rapida) var(--ease-saida);
+}
+
+.seta:hover {
+  background-color: var(--cor-azul);
+  border-color: var(--cor-azul);
+  color: var(--txt-inverso);
+}
+
+.seta:active {
+  transform: scale(0.94);
+}
+
+.seta:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.seta svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- Responsivo ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .cabecalho {
+    grid-template-columns: 1fr;
+    gap: var(--e-5);
+  }
+
+  .janelaContainer {
+    --largura-card: 76%;
+    mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 98%);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 72%,
+      transparent 98%
+    );
+  }
+
+  .janelaContainer[data-rotacionando='true'] {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 5%,
+      #000 72%,
+      transparent 98%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 5%,
+      #000 72%,
+      transparent 98%
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  .janelaContainer {
+    --largura-card: 85%;
+    --gap-trilho: var(--e-4);
+    mask-image: linear-gradient(to right, #000 0%, #000 70%, transparent 98%);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 70%,
+      transparent 98%
+    );
+  }
+
+  .janelaContainer[data-rotacionando='true'] {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 6%,
+      #000 70%,
+      transparent 98%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 6%,
+      #000 70%,
+      transparent 98%
+    );
+  }
+}

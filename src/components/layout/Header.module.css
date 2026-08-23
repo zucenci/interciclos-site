@@ -1,0 +1,317 @@
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  /* No topo o cabeçalho se funde à página; ao rolar, ganha fundo e contorno. */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--dur-media) var(--ease-saida),
+    box-shadow var(--dur-media) var(--ease-saida),
+    background-color var(--dur-media) var(--ease-saida);
+}
+
+.compacto {
+  background-color: rgba(237, 233, 222, 0.9);
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  border-bottom-color: var(--linha);
+  box-shadow: 0 1px 24px -14px rgba(43, 39, 35, 0.45);
+}
+
+/* Com o menu mobile aberto a barra precisa de fundo, mesmo sobre o banner. */
+.aberto {
+  background-color: rgba(237, 233, 222, 0.98);
+  border-bottom-color: var(--linha);
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: var(--e-5);
+  width: 100%;
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  height: var(--altura-header);
+  transition: height var(--dur-media) var(--ease-saida);
+}
+
+.compacto .barra {
+  height: var(--altura-header-compacto);
+}
+
+.logo {
+  flex: none;
+  font-size: 1.18rem;
+  transition: font-size var(--dur-media) var(--ease-saida);
+}
+
+.compacto .logo {
+  font-size: 0.94rem;
+}
+
+/* --- Navegação desktop --------------------------------------------------- */
+
+/* Navegacao e CTA encostados a direita da barra. */
+.navegacaoDesktop {
+  margin-left: auto;
+}
+
+.listaDesktop {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.itemComSubmenu {
+  position: relative;
+}
+
+.itemDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  font-size: var(--t-micro);
+  font-weight: var(--peso-medio);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--cor-terracota);
+  white-space: nowrap;
+  transition:
+    color var(--dur-rapida) var(--ease-saida),
+    background-color var(--dur-rapida) var(--ease-saida);
+}
+
+.itemDesktop:hover {
+  color: var(--cor-terracota-sombra);
+  background-color: rgba(150, 75, 54, 0.07);
+}
+
+.itemAtivo {
+  color: var(--cor-terracota-sombra);
+  font-weight: var(--peso-semi);
+}
+
+.gatilhoSubmenu {
+  font-family: inherit;
+}
+
+.chevron {
+  width: 0.9em;
+  height: 0.9em;
+  transition: transform var(--dur-rapida) var(--ease-saida);
+}
+
+.gatilhoSubmenu[aria-expanded='true'] .chevron {
+  transform: rotate(180deg);
+}
+
+/* --- Submenu ------------------------------------------------------------- */
+
+.submenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  width: min(30rem, 88vw);
+  padding: var(--e-4);
+  transform: translate(-50%, -6px);
+  background-color: var(--sup-papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra-alta);
+  opacity: 0;
+  transition:
+    opacity var(--dur-media) var(--ease-suave),
+    transform var(--dur-media) var(--ease-suave);
+}
+
+.submenuVisivel {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.submenuTitulo {
+  margin-bottom: var(--e-2);
+  padding: var(--e-2) var(--e-3);
+}
+
+.submenuTituloLink {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+}
+
+.submenuTituloLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.listaSubmenu {
+  display: grid;
+  gap: 2px;
+}
+
+.itemSubmenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--e-3);
+  border-radius: var(--raio);
+  transition: background-color var(--dur-rapida) var(--ease-saida);
+}
+
+.itemSubmenu:hover {
+  background-color: var(--sup-suave);
+}
+
+.itemSubmenu[aria-current='page'] .itemSubmenuRotulo {
+  color: var(--cor-terracota);
+}
+
+.itemSubmenuRotulo {
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semi);
+  line-height: var(--lh-micro);
+  color: var(--txt-forte);
+}
+
+.itemSubmenuDescricao {
+  font-size: var(--t-micro);
+  line-height: var(--lh-pequeno);
+  color: var(--txt-suave);
+}
+
+/* --- Ações --------------------------------------------------------------- */
+
+.acoes {
+  flex: none;
+}
+
+/* --- Gatilho mobile ------------------------------------------------------ */
+
+.gatilhoMobile {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  margin-right: calc(var(--e-2) * -1);
+  border-radius: var(--raio);
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburguer {
+  display: grid;
+  gap: 6px;
+  width: 22px;
+}
+
+.hamburguer span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--txt-forte);
+  transition: transform var(--dur-media) var(--ease-suave);
+  transform-origin: center;
+}
+
+.aberto .hamburguer span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.aberto .hamburguer span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* --- Painel mobile ------------------------------------------------------- */
+
+.painelMobile {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .navegacaoDesktop,
+  .acoes {
+    display: none;
+  }
+
+  .gatilhoMobile {
+    display: flex;
+  }
+
+  .painelMobile {
+    display: block;
+    height: calc(100dvh - var(--altura-header-compacto));
+    overflow-y: auto;
+    padding: var(--e-6) var(--gutter) var(--e-10);
+    background-color: var(--sup-papel);
+    border-top: 1px solid var(--linha);
+    animation: entrarPainel var(--dur-media) var(--ease-suave);
+  }
+
+  .painelMobile[hidden] {
+    display: none;
+  }
+}
+
+@keyframes entrarPainel {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.listaMobile {
+  display: grid;
+  gap: var(--e-2);
+}
+
+.grupoMobile {
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--linha);
+}
+
+.itemMobile {
+  display: block;
+  padding: var(--e-3) 0;
+  font-size: var(--t-h4);
+  font-weight: var(--peso-semi);
+  color: var(--txt-forte);
+}
+
+.itemMobile.itemAtivo {
+  color: var(--cor-azul);
+}
+
+.listaMobileFilhos {
+  display: grid;
+  gap: 2px;
+  padding-left: var(--e-4);
+  border-left: 2px solid var(--linha);
+}
+
+.itemMobileFilho {
+  display: block;
+  padding: var(--e-2) 0;
+  font-size: var(--t-pequeno);
+  color: var(--txt-corpo);
+}
+
+.itemMobileFilho.itemAtivo {
+  color: var(--cor-azul);
+  font-weight: var(--peso-semi);
+}
+
+.ctaMobile {
+  margin-top: var(--e-7);
+  width: 100%;
+}

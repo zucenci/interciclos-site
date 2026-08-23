@@ -1,0 +1,37 @@
+.rotulo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  line-height: var(--lh-micro);
+  text-transform: uppercase;
+  margin-bottom: var(--e-5);
+}
+
+.rotulo::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  border-radius: 2px;
+  flex: none;
+  background-image: var(--grad-marca);
+}
+
+.azul {
+  color: var(--cor-azul);
+}
+
+.terracota {
+  color: var(--cor-terracota);
+}
+
+.claro {
+  color: var(--cor-fendi);
+}
+
+.claro::before {
+  background-image: var(--grad-luz);
+}

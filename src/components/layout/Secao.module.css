@@ -1,0 +1,49 @@
+.secao {
+  position: relative;
+  isolation: isolate;
+}
+
+.espaco_padrao {
+  padding-block: var(--secao-y);
+}
+
+.espaco_curto {
+  padding-block: var(--secao-y-curta);
+}
+
+.espaco_nenhum {
+  padding-block: 0;
+}
+
+.papel {
+  background-color: var(--sup-papel);
+}
+
+.suave {
+  background-color: var(--sup-suave);
+}
+
+.media {
+  background-color: var(--sup-media);
+}
+
+.escura {
+  background-color: var(--sup-escura);
+  color: var(--txt-inverso-suave);
+}
+
+.gradiente {
+  background-image: var(--grad-noite);
+  color: var(--txt-inverso-suave);
+}
+
+.escura :global(h1),
+.escura :global(h2),
+.escura :global(h3),
+.escura :global(h4),
+.gradiente :global(h1),
+.gradiente :global(h2),
+.gradiente :global(h3),
+.gradiente :global(h4) {
+  color: var(--txt-inverso);
+}

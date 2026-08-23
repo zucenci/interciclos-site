@@ -1,0 +1,65 @@
+.grade {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  /* linha / coluna: o vão largo é só entre título e texto; entre o texto e
+     as citações basta o respiro do filete. */
+  gap: var(--e-8) clamp(2.5rem, 1rem + 6vw, 7rem);
+  align-items: start;
+}
+
+.colunaTitulo {
+  max-width: 24ch;
+}
+
+.colunaTexto {
+  max-width: 58ch;
+}
+
+.titulo {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+}
+
+.paragrafo {
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.paragrafo + .paragrafo {
+  margin-top: var(--e-4);
+}
+
+/* Citações: fecham o bloco em duas colunas, num tom mais baixo que o texto. */
+.citacoes {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 0.75rem + 1.5vw, 2.5rem);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--linha);
+}
+
+.citacao {
+  margin: 0;
+  padding-left: var(--e-4);
+  border-left: 2px solid var(--cor-nude);
+  font-size: var(--t-pequeno);
+  font-style: italic;
+  line-height: var(--lh-texto);
+  color: var(--txt-suave);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .citacoes {
+    grid-template-columns: 1fr;
+    gap: var(--e-5);
+  }
+}

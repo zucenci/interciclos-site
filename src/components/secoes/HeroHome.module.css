@@ -1,0 +1,207 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* O banner sobe para debaixo do cabecalho, que fica flutuando sobre ele com
+     fundo transparente; o padding devolve o espaco para o conteudo. */
+  margin-top: calc(var(--altura-header) * -1);
+  padding-block: calc(var(--altura-header) + clamp(3.5rem, 2rem + 8vw, 8rem))
+    clamp(3.5rem, 2rem + 6vw, 7rem);
+}
+
+.grafismo {
+  z-index: -1;
+  --grafismo-opacidade: 0.27;
+}
+
+.conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Layout Grid Hero --------------------------------------------------- */
+
+.gridHero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 1.5rem + 4vw, 5rem);
+  align-items: center;
+}
+
+.colunaTexto {
+  display: flex;
+  flex-direction: column;
+}
+
+.rotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+  margin-bottom: var(--e-5);
+  opacity: 0;
+  animation: subir 700ms var(--ease-suave) 80ms forwards;
+}
+
+.titulo {
+  font-size: clamp(1.875rem, 1.35rem + 2.5vw, 2.75rem);
+  font-weight: var(--peso-leve);
+  letter-spacing: -0.025em;
+  line-height: var(--lh-h1);
+  opacity: 0;
+  animation: subir 900ms var(--ease-suave) 160ms forwards;
+}
+
+.textos {
+  display: grid;
+  gap: var(--e-4);
+  max-width: var(--largura-texto);
+  margin-top: var(--e-6);
+  opacity: 0;
+  animation: subir 900ms var(--ease-suave) 300ms forwards;
+}
+
+.paragrafo {
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  margin-top: var(--e-7);
+  opacity: 0;
+  animation: subir 900ms var(--ease-suave) 420ms forwards;
+}
+
+/* --- Coluna Imagem com Máscara e Selo 10 Anos ---------------------------- */
+
+.colunaImagem {
+  position: relative;
+  opacity: 0;
+  animation: subir 900ms var(--ease-suave) 300ms forwards;
+  padding-bottom: var(--e-4);
+  padding-right: var(--e-4);
+}
+
+.molduraImagem {
+  position: relative !important;
+  width: 100%;
+  aspect-ratio: 4 / 3.7;
+  /* Máscara com canto superior esquerdo arredondado como no protótipo */
+  border-top-left-radius: clamp(4.5rem, 3rem + 5vw, 7.5rem);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+  box-shadow: var(--sombra-media);
+  background-color: var(--sup-papel);
+}
+
+.imagem {
+  object-fit: cover;
+  transition: transform 700ms var(--ease-suave);
+}
+
+.molduraImagem:hover .imagem {
+  transform: scale(1.03);
+}
+
+/* Selo "10 anos" sobreposto no canto inferior direito da imagem */
+.seloDezAnos {
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  width: clamp(104px, 84px + 3vw, 142px);
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .seloDezAnos {
+    bottom: -10px;
+    right: -6px;
+  }
+}
+
+/* --- Pilares na Base ----------------------------------------------------- */
+
+.pilares {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-4) var(--e-6);
+  margin-top: var(--e-10);
+  padding-top: var(--e-6);
+  border-top: 1px solid var(--linha);
+  opacity: 0;
+  animation: subir 900ms var(--ease-suave) 540ms forwards;
+}
+
+.pilar {
+  position: relative;
+  font-size: var(--t-lead);
+  font-weight: var(--peso-leve);
+  color: var(--txt-forte);
+  padding-left: var(--e-5);
+}
+
+.pilar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background-image: var(--grad-marca);
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotulo,
+  .titulo,
+  .textos,
+  .acoes,
+  .colunaImagem,
+  .pilares {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .gridHero {
+    grid-template-columns: 1fr;
+    gap: var(--e-7);
+  }
+
+  .molduraImagem {
+    aspect-ratio: 16 / 10;
+  }
+
+  .colunaImagem {
+    padding-bottom: var(--e-2);
+    padding-right: var(--e-2);
+  }
+}
+
+@media (max-width: 620px) {
+  .acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

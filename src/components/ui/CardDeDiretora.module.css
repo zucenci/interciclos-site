@@ -1,0 +1,145 @@
+.card {
+  display: grid;
+  grid-template-columns: clamp(200px, 160px + 8vw, 270px) 1fr;
+  gap: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  align-items: start;
+  padding: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  background-color: var(--sup-papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
+  box-shadow: var(--sombra-sutil);
+  width: 100%;
+  transition:
+    border-color var(--dur-media) var(--ease-suave),
+    box-shadow var(--dur-media) var(--ease-suave);
+}
+
+.card:hover {
+  border-color: var(--cor-fendi);
+  box-shadow: var(--sombra-media);
+}
+
+.retrato {
+  position: relative !important;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--raio-grande);
+  background-image: var(--grad-marca);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--sombra-sutil);
+}
+
+.foto {
+  object-fit: cover;
+  transition: transform 700ms var(--ease-suave);
+}
+
+.retrato:hover .foto {
+  transform: scale(1.03);
+}
+
+.monograma {
+  font-size: 2.75rem;
+  font-weight: var(--peso-leve);
+  letter-spacing: 0.02em;
+  color: var(--txt-inverso);
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+}
+
+.cabecalhoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+}
+
+.nome {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+  color: var(--txt-forte);
+}
+
+.cargo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+}
+
+.trajetoria {
+  font-size: var(--t-corpo);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+/* Blocos de credenciais dispostos em colunas sub-grid */
+.blocos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--e-5);
+  margin-top: var(--e-2);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--linha);
+}
+
+.bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+}
+
+.blocoRotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--txt-suave);
+}
+
+.blocoValor {
+  margin: 0;
+}
+
+.blocoLista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.blocoLista li {
+  position: relative;
+  padding-left: var(--e-4);
+}
+
+.blocoLista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 1px;
+  background-color: var(--cor-terracota);
+}
+
+@media (max-width: 800px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: var(--e-5);
+  }
+
+  .retrato {
+    max-width: 220px;
+  }
+}

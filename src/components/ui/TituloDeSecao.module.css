@@ -1,0 +1,37 @@
+.bloco {
+  max-width: var(--largura-texto);
+}
+
+.centro {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.centro :global(p:first-child) {
+  justify-content: center;
+}
+
+.titulo {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+}
+
+.grande {
+  font-size: var(--t-h1);
+}
+
+.chamada {
+  margin-top: var(--e-5);
+  font-size: var(--t-lead);
+  line-height: var(--lh-lead);
+  color: var(--txt-corpo);
+  max-width: var(--largura-texto);
+}
+
+.centro .chamada {
+  margin-inline: auto;
+}
+
+:global(.emFundoEscuro) .chamada {
+  color: var(--txt-inverso-suave);
+}

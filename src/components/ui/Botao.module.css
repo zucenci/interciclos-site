@@ -1,0 +1,141 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  border-radius: 3px;
+  font-family: var(--fonte-texto);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-align: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-rapida) var(--ease-saida),
+    border-color var(--dur-rapida) var(--ease-saida),
+    color var(--dur-rapida) var(--ease-saida),
+    box-shadow var(--dur-media) var(--ease-suave),
+    transform var(--dur-media) var(--ease-suave);
+}
+
+.botao:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.rotulo {
+  display: inline-block;
+}
+
+.seta {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  transition: transform var(--dur-media) var(--ease-suave);
+}
+
+.botao:hover .seta {
+  transform: translateX(3px);
+}
+
+/* Ícone de marca (WhatsApp): mesma caixa da seta, sem o deslize lateral. */
+.icone {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  transition: transform var(--dur-media) var(--ease-suave);
+}
+
+.botao:hover .icone {
+  transform: scale(1.1);
+}
+
+/* Tamanhos */
+.padrao {
+  padding: 0.9375rem 1.75rem;
+  font-size: var(--t-micro);
+}
+
+.grande {
+  padding: 1.125rem 2.25rem;
+  font-size: var(--t-pequeno);
+}
+
+.compacto {
+  padding: 0.6875rem 1.25rem;
+  font-size: 0.75rem;
+}
+
+/* Variantes */
+.primario {
+  background-color: var(--cor-terracota);
+  color: var(--txt-inverso);
+  box-shadow: 0 12px 28px -16px rgba(150, 75, 54, 0.85);
+}
+
+.primario:hover {
+  background-color: var(--cor-terracota-sombra);
+  box-shadow: 0 18px 36px -16px rgba(150, 75, 54, 0.7);
+  transform: translateY(-1px);
+}
+
+.secundario {
+  background-color: transparent;
+  border-color: var(--cor-terracota);
+  color: var(--cor-terracota);
+}
+
+.secundario:hover {
+  border-color: var(--cor-terracota-sombra);
+  color: var(--cor-terracota-sombra);
+  background-color: rgba(150, 75, 54, 0.05);
+}
+
+.fantasma {
+  background-color: transparent;
+  border-color: var(--linha-escura);
+  color: var(--txt-inverso);
+}
+
+.fantasma:hover {
+  border-color: rgba(246, 242, 233, 0.5);
+  background-color: rgba(246, 242, 233, 0.1);
+}
+
+.claro {
+  background-color: var(--sup-papel);
+  color: var(--cor-terracota);
+}
+
+.claro:hover {
+  background-color: var(--cor-nude);
+  color: var(--cor-tinta);
+  transform: translateY(-1px);
+}
+
+.texto {
+  padding-inline: 0;
+  background: none;
+  color: var(--cor-terracota);
+  font-weight: var(--peso-semi);
+}
+
+.texto:hover {
+  color: var(--cor-terracota-sombra);
+}
+
+:global(.emFundoEscuro) .texto {
+  color: var(--cor-fendi);
+}
+
+:global(.emFundoEscuro) .texto:hover {
+  color: var(--txt-inverso);
+}
+
+@media (max-width: 480px) {
+  .botao {
+    width: 100%;
+  }
+}

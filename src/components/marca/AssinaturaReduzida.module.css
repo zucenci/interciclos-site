@@ -1,0 +1,40 @@
+.assinatura {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* O símbolo encosta na borda do quadro: girando, ele passaria alguns décimos
+     de unidade para fora e seria cortado pelo recorte padrão do SVG. */
+  overflow: visible;
+}
+
+.bronze {
+  fill: var(--cor-bronze);
+}
+
+.nome {
+  fill: var(--cor-off-white);
+}
+
+/* O símbolo gira sobre o próprio centro. O eixo é dado em unidades do viewBox
+   (ver ASSINATURA_SIMBOLO_CENTRO em caminhosAssinatura.ts) com
+   `transform-box: view-box`, para não depender da caixa de cada traçado. */
+.simbolo {
+  transform-box: view-box;
+  transform-origin: 355.76px 43.94px;
+  animation: girarSimboloAssinatura 36s linear infinite;
+}
+
+@keyframes girarSimboloAssinatura {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simbolo {
+    animation: none;
+  }
+}

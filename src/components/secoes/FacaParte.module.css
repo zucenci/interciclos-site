@@ -1,0 +1,118 @@
+.grade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 1rem + 6vw, 6.5rem);
+  align-items: start;
+}
+
+.texto {
+  max-width: 48ch;
+}
+
+.titulo {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+  margin-bottom: var(--e-6);
+}
+
+.momentos {
+  display: grid;
+  gap: var(--e-2);
+}
+
+.momento {
+  position: relative;
+  padding-left: var(--e-5);
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.momento::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 10px;
+  height: 1px;
+  background-color: var(--cor-terracota);
+}
+
+.fechamento {
+  margin-top: var(--e-6);
+  font-size: var(--t-lead);
+  font-weight: var(--peso-leve);
+  font-style: italic;
+  line-height: var(--lh-lead);
+  color: var(--txt-forte);
+}
+
+.escolha {
+  position: sticky;
+  top: calc(var(--altura-header) + var(--e-6));
+}
+
+.pergunta {
+  margin-bottom: var(--e-5);
+  font-size: var(--t-h3);
+  font-weight: var(--peso-normal);
+  color: var(--cor-azul);
+}
+
+.atalhos {
+  display: grid;
+  gap: var(--e-2);
+}
+
+.atalho {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--e-4);
+  padding: var(--e-4) var(--e-5);
+  background-color: var(--sup-papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  transition:
+    border-color var(--dur-media) var(--ease-suave),
+    transform var(--dur-media) var(--ease-suave),
+    box-shadow var(--dur-media) var(--ease-suave);
+}
+
+.atalho:hover {
+  border-color: var(--cor-azul);
+  transform: translateX(4px);
+  box-shadow: var(--sombra-sutil);
+}
+
+.atalhoOrdem {
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  color: var(--txt-suave);
+}
+
+.atalhoRotulo {
+  font-size: var(--t-corpo);
+  font-weight: var(--peso-normal);
+  color: var(--txt-forte);
+}
+
+.atalhoSeta {
+  color: var(--cor-azul);
+  opacity: 0;
+  transition: opacity var(--dur-media) var(--ease-suave);
+}
+
+.atalho:hover .atalhoSeta {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+
+  .escolha {
+    position: static;
+  }
+}

@@ -1,0 +1,148 @@
+.cabecalho {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) clamp(3rem, 2rem + 5vw, 5.5rem);
+  border-bottom: 1px solid var(--linha);
+}
+
+.destaque {
+  background-color: var(--sup-escura);
+  background-image: var(--grad-noite);
+  border-bottom-color: transparent;
+  color: var(--txt-inverso-suave);
+}
+
+.grafismo {
+  z-index: -1;
+}
+
+.conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Layout Grade com Imagem Opcional ------------------------------------ */
+
+.grade {
+  display: block;
+}
+
+.grade.comImagem {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 1.5rem + 4vw, 5rem);
+  align-items: center;
+}
+
+.colunaTexto {
+  display: flex;
+  flex-direction: column;
+}
+
+.rotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+  margin-bottom: var(--e-5);
+}
+
+.destaque .rotulo {
+  color: var(--cor-fendi);
+}
+
+.titulo {
+  max-width: 20ch;
+  font-size: var(--t-h1);
+  font-weight: var(--peso-leve);
+  letter-spacing: -0.028em;
+}
+
+.comImagem .titulo {
+  max-width: 100%;
+  font-size: clamp(1.875rem, 1.35rem + 2.4vw, 2.75rem);
+  line-height: var(--lh-h1);
+}
+
+.destaque .titulo {
+  color: var(--txt-inverso);
+}
+
+.chamada {
+  margin-top: var(--e-5);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-h3);
+  font-weight: var(--peso-leve);
+  line-height: var(--lh-h3);
+  color: var(--cor-azul);
+  max-width: 32ch;
+}
+
+.destaque .chamada {
+  color: var(--cor-fendi);
+}
+
+.introducao {
+  display: grid;
+  gap: var(--e-4);
+  max-width: var(--largura-texto);
+  margin-top: var(--e-6);
+  font-size: var(--t-lead);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
+.destaque .introducao {
+  color: var(--txt-inverso-suave);
+}
+
+.etiquetas {
+  margin-top: var(--e-7);
+}
+
+.extra {
+  margin-top: var(--e-8);
+}
+
+/* --- Coluna Imagem (Quando apresentada) ---------------------------------- */
+
+.colunaImagem {
+  position: relative !important;
+}
+
+.molduraImagem {
+  position: relative !important;
+  width: 100%;
+  aspect-ratio: 4 / 5.2;
+  border-top-left-radius: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+  box-shadow: var(--sombra-media);
+  background-color: var(--sup-papel);
+  border: 1px solid var(--linha);
+}
+
+.imagem {
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 700ms var(--ease-suave);
+}
+
+.molduraImagem:hover .imagem {
+  transform: scale(1.03);
+}
+
+@media (max-width: 900px) {
+  .grade.comImagem {
+    grid-template-columns: 1fr;
+    gap: var(--e-7);
+  }
+
+  .molduraImagem {
+    aspect-ratio: 4 / 3.5;
+  }
+}

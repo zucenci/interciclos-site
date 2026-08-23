@@ -1,0 +1,100 @@
+/* Textura de fundo dos banners: as circunferências concêntricas da marca em
+   escala grande, com o centro do desenho fora da área visível — só os arcos
+   externos, bem abertos, atravessam o bloco. Opacidade <= 50% (Brand Book,
+   pág. 24).
+
+   As medidas são em vw (e não em %) porque os banners ocupam a largura da
+   janela: assim a escala e a posição do centro do desenho são previsíveis,
+   independentemente da caixa em que o grafismo é inserido.
+
+   O desenho gira devagar sobre o próprio centro, sem sair do lugar: como os
+   anéis são concêntricos, a rotação só faz a textura respirar. */
+
+.grafismo {
+  position: absolute;
+  height: auto;
+  /* o reset global limita svg a max-width: 100%; aqui o desenho precisa sangrar */
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+  /* Posicionamento pela propriedade `translate` (e nao por `transform`):
+     as propriedades individuais compoem como translate . rotate . transform, de
+     modo que a rotacao acontece em torno do centro do proprio desenho e so
+     depois ele e deslocado para o lugar. Com `transform: translate(...)` o
+     deslocamento entrava antes da rotacao e o grafismo orbitava pela tela. */
+  translate: -50% -50%;
+  transform-origin: 50% 50%;
+  animation: girarGrafismo 260s linear infinite;
+}
+
+@keyframes girarGrafismo {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+.fundo {
+  /* centro logo abaixo da borda inferior: os arcos sobem pelo banner e o
+     miolo mais denso do desenho fica fora de vista */
+  top: 112%;
+  left: 50%;
+  width: 145vw;
+}
+
+.superiorDireita {
+  top: -10%;
+  left: 172vw;
+  width: 265vw;
+  animation-duration: 300s;
+  animation-direction: reverse;
+}
+
+.inferiorEsquerda {
+  top: 112%;
+  left: -72vw;
+  width: 265vw;
+  animation-duration: 280s;
+}
+
+.centroDireita {
+  top: 50%;
+  left: 172vw;
+  width: 265vw;
+  animation-duration: 320s;
+  animation-direction: reverse;
+}
+
+/* --- Tons --------------------------------------------------------------- */
+
+.cor path {
+  fill: var(--cor-fendi);
+}
+
+.cor {
+  opacity: var(--grafismo-opacidade, 0.2);
+}
+
+.claro path {
+  fill: var(--cor-nude);
+}
+
+.claro {
+  opacity: var(--grafismo-opacidade, 0.4);
+}
+
+.escuro path {
+  fill: var(--txt-inverso);
+}
+
+.escuro {
+  opacity: 0.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grafismo {
+    animation: none;
+  }
+}
