@@ -77,3 +77,9 @@ export const frentePorSlug = (slug: string): Frente | undefined =>
 
 /** Todas as frentes exceto a âncora — usado em listagens complementares. */
 export const frentesComplementares = frentes.filter((frente) => !frente.ancora);
+
+/**
+ * Frentes exibidas na grade da home. Os eventos ficam de fora porque têm
+ * uma seção dedicada logo abaixo, com a agenda.
+ */
+export const frentesDeFormacao = frentes.filter((frente) => frente.slug !== 'eventos');

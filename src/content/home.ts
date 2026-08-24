@@ -26,6 +26,12 @@ export const manifestoHome = {
   ],
 };
 
+export const eventosHome = {
+  rotulo: 'Eventos',
+  titulo: 'Conhecimento também se constrói nos encontros',
+  acao: { rotulo: 'Ver a agenda de eventos', href: '/eventos' } as Cta,
+};
+
 export const destaqueEspecializacaoHome = {
   rotulo: 'Produto âncora',
   titulo: 'Especialização/Formação em Terapia de Casal e Família',
