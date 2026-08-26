@@ -61,15 +61,6 @@ export const frentes: Frente[] = [
     href: '/lado-de-dentro-do-terapeuta',
     formato: ['Imersão presencial', 'Uma vez ao ano'],
   },
-  {
-    slug: 'eventos',
-    nome: 'Eventos científicos',
-    chamada: 'Conhecimento também se constrói nos encontros.',
-    resumo:
-      'Workshops, encontros científicos e experiências formativas que aproximam profissionais, pesquisadores, estudantes e diferentes perspectivas.',
-    href: '/eventos',
-    formato: ['Agenda ao longo do ano'],
-  },
 ];
 
 export const frentePorSlug = (slug: string): Frente | undefined =>
@@ -79,7 +70,7 @@ export const frentePorSlug = (slug: string): Frente | undefined =>
 export const frentesComplementares = frentes.filter((frente) => !frente.ancora);
 
 /**
- * Frentes exibidas na grade da home. Os eventos ficam de fora porque têm
- * uma seção dedicada logo abaixo, com a agenda.
+ * Frentes exibidas na grade da home. Os eventos não entram na lista: vivem
+ * apenas no bloco dedicado logo abaixo da grade.
  */
-export const frentesDeFormacao = frentes.filter((frente) => frente.slug !== 'eventos');
+export const frentesDeFormacao = frentes;

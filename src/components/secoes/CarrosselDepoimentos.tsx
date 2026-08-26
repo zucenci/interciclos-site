@@ -77,7 +77,7 @@ export function CarrosselDepoimentos() {
   const pct = Math.round(((ativo + 1) / total) * 100);
 
   return (
-    <Secao fundo="papel" id="depoimentos">
+    <Secao fundo="suave" id="depoimentos">
       <Container>
         {/* Cabeçalho acima (Título à esquerda, Destaques à direita) */}
         <Revelar>

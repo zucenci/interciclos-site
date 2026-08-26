@@ -1,5 +1,5 @@
 import type { Cta } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const clinicaSocial = {
   cabecalho: {
@@ -20,7 +20,13 @@ export const clinicaSocial = {
         'Alunos vinculados à Especialização podem participar da Clínica Social e realizar atendimentos supervisionados, aproximando teoria e prática dentro de uma estrutura de acompanhamento clínico.',
       ],
       condicoes: ['Supervisão obrigatória mensal', 'Atendimentos online'],
-      acao: { rotulo: 'Quero participar como terapeuta', href: contato.whatsappLink, externo: true } as Cta,
+      acao: {
+        rotulo: 'Quero participar como terapeuta',
+        href: whatsapp(
+          'Olá! Vim pelo site do InterCiclos e gostaria de participar da Clínica Social como terapeuta.',
+        ),
+        externo: true,
+      } as Cta,
     },
     {
       id: 'pacientes',
@@ -30,7 +36,13 @@ export const clinicaSocial = {
         'A Clínica Social possibilita acesso à psicoterapia por meio de atendimentos realizados por profissionais vinculados ao processo de formação do InterCiclos e acompanhados por supervisão.',
       ],
       condicoes: ['Atendimentos online', 'Valores sociais'],
-      acao: { rotulo: 'Busco atendimento no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+      acao: {
+        rotulo: 'Busco atendimento no WhatsApp',
+        href: whatsapp(
+          'Olá! Vim pelo site do InterCiclos e gostaria de saber como buscar atendimento na Clínica Social.',
+        ),
+        externo: true,
+      } as Cta,
     },
   ],
 };

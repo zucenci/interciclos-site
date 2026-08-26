@@ -21,6 +21,16 @@ export type DadoEstrutural = {
   valor: string;
 };
 
+export type Evento = {
+  titulo: string;
+  data: string;
+  /** Formato ISO para o atributo dateTime — ex.: '2027-03-12'. */
+  dataISO: string;
+  local: string;
+  descricao: string;
+  href?: string;
+};
+
 /** Uma das frentes de atuação do Instituto. */
 export type Frente = {
   slug: string;
@@ -69,6 +79,6 @@ export type ItemDeNavegacao = {
 export type CabecalhoDePagina = {
   rotulo: string;
   titulo: string;
-  chamada: string;
+  chamada?: string;
   introducao: string[];
 };

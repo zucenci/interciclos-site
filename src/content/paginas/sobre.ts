@@ -1,5 +1,5 @@
 import type { Cta, Diretora } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const sobre = {
   cabecalho: {
@@ -51,7 +51,11 @@ export const sobre = {
       'O corpo docente do InterCiclos reúne profissionais com experiência acadêmica e clínica, aproximando o conhecimento científico das situações encontradas diariamente no consultório.',
       'Essa conexão permite que conceitos sejam discutidos não apenas a partir dos livros, mas também a partir dos desafios, decisões e complexidades que fazem parte da prática terapêutica.',
     ],
-    acao: { rotulo: 'Fale com a nossa equipe', href: contato.whatsappLink, externo: true } as Cta,
+    acao: {
+      rotulo: 'Fale com a nossa equipe',
+      href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de falar com a equipe.'),
+      externo: true,
+    } as Cta,
   },
 };
 

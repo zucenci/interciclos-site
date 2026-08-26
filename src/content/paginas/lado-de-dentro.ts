@@ -1,5 +1,5 @@
 import type { Cta } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const ladoDeDentro = {
   cabecalho: {
@@ -29,5 +29,11 @@ export const ladoDeDentro = {
     { titulo: 'Consciência', descricao: 'Perceber o que acontece dentro de si durante o encontro terapêutico.' },
   ],
   formato: ['Imersão presencial em Chapecó', 'Realizada uma vez ao ano'],
-  acao: { rotulo: 'Quero participar no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+  acao: {
+    rotulo: 'Quero participar no WhatsApp',
+    href: whatsapp(
+      'Olá! Vim pelo site do InterCiclos e gostaria de participar da oficina O Lado de Dentro do Terapeuta.',
+    ),
+    externo: true,
+  } as Cta,
 };

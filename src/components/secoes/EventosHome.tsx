@@ -1,14 +1,14 @@
 import { Container } from '@/components/layout/Container';
 import { Secao } from '@/components/layout/Secao';
+import { Grafismo } from '@/components/marca/Grafismo';
 import { Botao } from '@/components/ui/Botao';
 import { Etiquetas } from '@/components/ui/Etiquetas';
 import { Revelar } from '@/components/ui/Revelar';
 import { TituloDeSecao } from '@/components/ui/TituloDeSecao';
 import { eventosHome as conteudo } from '@/content/home';
-import { eventos } from '@/content/paginas/eventos';
 import estilos from './EventosHome.module.css';
 
-/** Quantos encontros da agenda cabem na home antes de mandar para /eventos. */
+/** Quantos encontros da agenda cabem no bloco. */
 const LIMITE = 3;
 
 /**
@@ -17,18 +17,20 @@ const LIMITE = 3;
  * quando há agenda, os próximos encontros abaixo dos dois.
  */
 export function EventosHome() {
-  const proximos = eventos.agenda.slice(0, LIMITE);
+  const proximos = conteudo.agenda.slice(0, LIMITE);
   const temAgenda = proximos.length > 0;
 
   return (
-    <Secao id="eventos" fundo="papel">
+    <Secao id="eventos" fundo="escura" className={estilos.secao}>
+      <Grafismo posicao="inferiorEsquerda" tom="escuro" />
+
       <Container className={estilos.grade}>
         <Revelar className={estilos.colunaTitulo}>
-          <TituloDeSecao rotulo={conteudo.rotulo} titulo={conteudo.titulo} />
+          <TituloDeSecao rotulo={conteudo.rotulo} titulo={conteudo.titulo} tomRotulo="claro" />
         </Revelar>
 
         <Revelar atraso={120} className={estilos.colunaTexto}>
-          {eventos.cabecalho.introducao.map((paragrafo) => (
+          {conteudo.introducao.map((paragrafo) => (
             <p key={paragrafo.slice(0, 40)} className={estilos.paragrafo}>
               {paragrafo}
             </p>
@@ -36,7 +38,8 @@ export function EventosHome() {
 
           <Botao
             href={conteudo.acao.href}
-            variante="secundario"
+            externo={conteudo.acao.externo}
+            variante="claro"
             tamanho="padrao"
             className={estilos.acao}
           >
@@ -54,7 +57,7 @@ export function EventosHome() {
                   </time>
                   <h3 className={estilos.eventoTitulo}>{evento.titulo}</h3>
                   <p className={estilos.eventoDescricao}>{evento.descricao}</p>
-                  <Etiquetas itens={[evento.local]} />
+                  <Etiquetas itens={[evento.local]} tom="escuro" />
                 </article>
               </li>
             ))}

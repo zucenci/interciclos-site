@@ -1,5 +1,5 @@
 import type { Cta } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const circuloAcademico = {
   cabecalho: {
@@ -29,5 +29,11 @@ export const circuloAcademico = {
     },
   ],
   formato: ['Encontros bimestrais', 'Presencial em Chapecó'],
-  acao: { rotulo: 'Quero participar no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+  acao: {
+    rotulo: 'Quero participar no WhatsApp',
+    href: whatsapp(
+      'Olá! Vim pelo site do InterCiclos e gostaria de participar do Círculo Acadêmico de Estudos Sistêmicos.',
+    ),
+    externo: true,
+  } as Cta,
 };

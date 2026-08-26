@@ -21,7 +21,6 @@ export function DestaqueEspecializacao() {
         <Revelar className={estilos.texto}>
           <Rotulo tom="claro">{conteudo.rotulo}</Rotulo>
           <h2 className={estilos.titulo}>{conteudo.titulo}</h2>
-          <p className={estilos.chamada}>{conteudo.chamada}</p>
           <p className={estilos.paragrafo}>{conteudo.paragrafo}</p>
           <Botao href={conteudo.acao.href} variante="claro" tamanho="grande" className={estilos.acao}>
             {conteudo.acao.rotulo}
@@ -30,7 +29,11 @@ export function DestaqueEspecializacao() {
 
         <Revelar atraso={120} className={estilos.ficha}>
           <h3 className={estilos.tituloFicha}>Estrutura da formação</h3>
-          <ListaDeDados dados={conteudo.dados} tom="escuro" colunas="unica" />
+          <ListaDeDados dados={conteudo.dados} tom="escuro" colunas="linha" />
+          <p className={estilos.novaTurma}>
+            <span className={estilos.novaTurmaRotulo}>{conteudo.novaTurma.rotulo}</span>
+            {conteudo.novaTurma.valor}
+          </p>
         </Revelar>
       </Container>
     </Secao>

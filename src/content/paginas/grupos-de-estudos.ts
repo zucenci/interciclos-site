@@ -1,5 +1,5 @@
 import type { Cta } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const gruposDeEstudos = {
   cabecalho: {
@@ -33,5 +33,9 @@ export const gruposDeEstudos = {
     ],
   },
   formato: ['Encontros mensais', 'Formato online'],
-  acao: { rotulo: 'Falar no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+  acao: {
+    rotulo: 'Falar no WhatsApp',
+    href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de saber mais sobre os Grupos de Estudos.'),
+    externo: true,
+  } as Cta,
 };

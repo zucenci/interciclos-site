@@ -24,6 +24,14 @@ export const contato = {
   instagramUsuario: '@inter.ciclos',
 } as const;
 
+/**
+ * Link do WhatsApp com mensagem já escrita na caixa de texto. Cada botão do
+ * site manda a sua: quem recebe entende de onde a pessoa veio e o que procura
+ * sem precisar perguntar.
+ */
+export const whatsapp = (mensagem: string): string =>
+  `${contato.whatsappLink}?text=${encodeURIComponent(mensagem)}`;
+
 /** Navegação principal. "Formações e atividades" abre submenu acessível. */
 export const navegacao: ItemDeNavegacao[] = [
   {
@@ -62,7 +70,7 @@ export const navegacao: ItemDeNavegacao[] = [
       },
       {
         rotulo: 'Eventos',
-        href: '/eventos',
+        href: '/#eventos',
         descricao: 'Encontros científicos, workshops e experiências formativas',
       },
     ],
@@ -72,17 +80,31 @@ export const navegacao: ItemDeNavegacao[] = [
 
 export const ctaPrincipal: Cta = {
   rotulo: 'Contato',
-  href: contato.whatsappLink,
+  href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de mais informações.'),
   externo: true,
 };
 
+export type LinkRodape = {
+  rotulo: string;
+  href: string;
+  externo?: boolean;
+};
+
 /** Blocos de link do rodapé. */
-export const rodape = {
+export const rodape: {
+  institucional: LinkRodape[];
+  formacoes: LinkRodape[];
+  assinatura: string;
+} = {
   institucional: [
     { rotulo: 'Sobre o InterCiclos', href: '/sobre' },
     { rotulo: 'Nossas diretoras', href: '/sobre#diretoras' },
     { rotulo: 'Corpo docente', href: '/sobre#corpo-docente' },
-    { rotulo: 'Contato no WhatsApp', href: contato.whatsappLink, externo: true },
+    {
+      rotulo: 'Contato no WhatsApp',
+      href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de falar com a equipe.'),
+      externo: true,
+    },
   ],
   formacoes: [
     { rotulo: 'Especialização/Formação', href: '/especializacao' },
@@ -91,8 +113,8 @@ export const rodape = {
     { rotulo: 'Círculo Acadêmico', href: '/circulo-academico' },
     { rotulo: 'Grupo de Pesquisa', href: '/grupo-de-pesquisa' },
     { rotulo: 'O Lado de Dentro do Terapeuta', href: '/lado-de-dentro-do-terapeuta' },
-    { rotulo: 'Eventos', href: '/eventos' },
+    { rotulo: 'Eventos', href: '/#eventos' },
   ],
   assinatura:
     'Formação, prática clínica, pesquisa e desenvolvimento para psicólogos.',
-} as const;
+};

@@ -129,7 +129,7 @@
 .imagem {
   object-fit: cover;
   object-position: center top;
-  transition: transform 700ms var(--ease-suave);
+  transition: transform 350ms var(--ease-suave);
 }
 
 .molduraImagem:hover .imagem {

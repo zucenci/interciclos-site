@@ -1,5 +1,5 @@
 import type { Cta, DadoEstrutural } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const especializacao = {
   cabecalho: {
@@ -17,6 +17,10 @@ export const especializacao = {
     paragrafos: [
       'É destinada tanto a profissionais que desejam ampliar suas habilidades no atendimento de casais e famílias quanto a psicólogos que buscam uma especialização ou estão construindo uma nova direção para sua atuação profissional.',
     ],
+    imagem: {
+      src: '/images/para-quem-e.jpg',
+      alt: 'Duas psicólogas sentadas lado a lado folheando livros de terapia de casal e família',
+    },
   },
   percurso: {
     rotulo: 'O que você encontra',
@@ -83,8 +87,9 @@ export const especializacao = {
       { rotulo: 'Aulas', valor: 'Mensais, sextas e sábados' },
       { rotulo: 'Chapecó', valor: 'Presencial' },
       { rotulo: 'Passo Fundo', valor: 'Formato híbrido' },
-      { rotulo: 'Nova turma', valor: 'Março de 2027' },
     ] as DadoEstrutural[],
+    /** Fora da lista: é a informação que move a decisão de inscrição. */
+    novaTurma: { rotulo: 'Nova turma', valor: 'Março de 2027' },
     /**
      * PENDENTE: validar institucionalmente a redação sobre a parceria com a
      * Faculdade Mario Quintana e a menção aos requisitos da ABRATEF antes
@@ -97,6 +102,12 @@ export const especializacao = {
     titulo: 'Pronto para começar este ciclo?',
     paragrafo:
       'Converse com a equipe do InterCiclos para receber informações sobre investimento, processo de inscrição e datas da próxima turma.',
-    acao: { rotulo: 'Falar no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+    acao: {
+      rotulo: 'Falar no WhatsApp',
+      href: whatsapp(
+        'Olá! Vim pelo site do InterCiclos e gostaria de saber mais sobre a Especialização/Formação em Terapia de Casal e Família.',
+      ),
+      externo: true,
+    } as Cta,
   },
 };

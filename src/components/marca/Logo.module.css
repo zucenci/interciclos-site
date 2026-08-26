@@ -11,7 +11,7 @@
 
   display: inline-flex;
   align-items: center;
-  gap: calc(var(--tam-simbolo) * 0.1337); /* respiro símbolo → letreiro */
+  gap: calc(var(--tam-simbolo) * 0.1215); /* respiro símbolo → letreiro */
   line-height: 0;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .simbolo {
-  width: calc(var(--tam-simbolo) * 1.0231);
+  width: calc(var(--tam-simbolo) * 1.0221);
   height: var(--tam-simbolo);
   flex: none;
   transition: transform var(--dur-media) var(--ease-suave);
@@ -38,14 +38,14 @@
 }
 
 .nome {
-  width: calc(var(--tam-simbolo) * 4.0057);
-  height: calc(var(--tam-simbolo) * 0.5885);
+  width: calc(var(--tam-simbolo) * 5.0432);
+  height: calc(var(--tam-simbolo) * 0.7506);
 }
 
 .designacao {
-  width: calc(var(--tam-simbolo) * 4.0057);
-  height: calc(var(--tam-simbolo) * 0.2356);
-  margin-top: calc(var(--tam-simbolo) * 0.1045); /* respiro nome → assinatura */
+  width: calc(var(--tam-simbolo) * 5.0432);
+  height: calc(var(--tam-simbolo) * 0.2966);
+  margin-top: calc(var(--tam-simbolo) * 0.1); /* respiro nome → assinatura */
 }
 
 /* Formato apenas-símbolo: ocupa o espaço reservado pelo contexto. */

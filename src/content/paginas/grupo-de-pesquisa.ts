@@ -1,5 +1,5 @@
 import type { Cta } from '../types';
-import { contato } from '../site';
+import { whatsapp } from '../site';
 
 export const grupoDePesquisa = {
   cabecalho: {
@@ -22,5 +22,9 @@ export const grupoDePesquisa = {
    * Enquanto a lista estiver vazia, a seção não é renderizada.
    */
   producoes: [] as Array<{ titulo: string; autores: string; veiculo: string; ano: string; href?: string }>,
-  acao: { rotulo: 'Falar no WhatsApp', href: contato.whatsappLink, externo: true } as Cta,
+  acao: {
+    rotulo: 'Falar no WhatsApp',
+    href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de saber mais sobre o Grupo de Pesquisa.'),
+    externo: true,
+  } as Cta,
 };

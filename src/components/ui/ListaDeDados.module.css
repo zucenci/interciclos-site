@@ -4,12 +4,72 @@
   margin: 0;
 }
 
+/* Colunas lado a lado: sem filetes, o enquadramento vem do bloco que a
+   recebe. */
 .auto {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--e-5) var(--e-6);
+}
+
+/* Duas por linha: agrupa os pares em blocos legíveis, cada um com o seu
+   filete. Abaixo de 640px vira coluna única. */
+.duas {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-4) var(--e-7);
+}
+
+.duas .par {
+  padding: var(--e-5) 0 0;
+}
+
+.duas .par:nth-child(-n + 2) {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (max-width: 640px) {
+  .duas {
+    grid-template-columns: 1fr;
+  }
+
+  .duas .par:nth-child(2) {
+    padding-top: var(--e-5);
+    border-top: 1px solid var(--linha);
+  }
+
+  .escuro.duas .par:nth-child(2) {
+    border-top-color: var(--linha-escura);
+  }
 }
 
 .unica {
   grid-template-columns: 1fr;
+}
+
+/* Ficha técnica: rótulo à esquerda e valor numa coluna própria à direita,
+   alinhados pela linha de base. Abaixo de 480px volta a empilhar. */
+.linha {
+  grid-template-columns: 1fr;
+}
+
+.linha .par {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) 1fr;
+  align-items: baseline;
+  gap: var(--e-4);
+  padding: var(--e-4) 0;
+}
+
+.linha .par:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (max-width: 480px) {
+  .linha .par {
+    display: flex;
+    gap: var(--e-1);
+  }
 }
 
 .par {
@@ -37,7 +97,8 @@
 }
 
 .auto .par {
-  padding-right: var(--e-5);
+  padding: 0;
+  border-top: 0;
 }
 
 .escuro .par {

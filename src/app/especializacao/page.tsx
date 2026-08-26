@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Container } from '@/components/layout/Container';
 import { Secao } from '@/components/layout/Secao';
 import { CabecalhoDePagina } from '@/components/secoes/CabecalhoDePagina';
@@ -32,18 +33,30 @@ export default function PaginaEspecializacao() {
       </CabecalhoDePagina>
 
       <Secao fundo="papel" espacamento="curto">
-        <Container largura="estreito">
-          <Revelar>
-            <TituloDeSecao
-              rotulo={conteudo.paraQuem.rotulo}
-              titulo={conteudo.paraQuem.titulo}
-              className={estilos.tituloEstreito}
-            />
-            {conteudo.paraQuem.paragrafos.map((paragrafo) => (
-              <p key={paragrafo.slice(0, 40)} className={estilos.paragrafo}>
-                {paragrafo}
-              </p>
-            ))}
+        <Container>
+          <Revelar className={estilos.blocoComImagem}>
+            <div>
+              <TituloDeSecao
+                rotulo={conteudo.paraQuem.rotulo}
+                titulo={conteudo.paraQuem.titulo}
+                className={estilos.tituloEstreito}
+              />
+              {conteudo.paraQuem.paragrafos.map((paragrafo) => (
+                <p key={paragrafo.slice(0, 40)} className={estilos.paragrafo}>
+                  {paragrafo}
+                </p>
+              ))}
+            </div>
+
+            <div className={estilos.molduraImagem}>
+              <Image
+                src={conteudo.paraQuem.imagem.src}
+                alt={conteudo.paraQuem.imagem.alt}
+                fill
+                sizes="(max-width: 900px) 100vw, 45vw"
+                className={estilos.imagemBloco}
+              />
+            </div>
           </Revelar>
         </Container>
       </Secao>
@@ -71,7 +84,7 @@ export default function PaginaEspecializacao() {
         </Container>
       </Secao>
 
-      <Secao id="estrutura" fundo="media">
+      <Secao id="estrutura" fundo="suave">
         <Container>
           <Revelar>
             <TituloDeSecao
@@ -81,14 +94,24 @@ export default function PaginaEspecializacao() {
             />
           </Revelar>
 
-          <Revelar atraso={100}>
-            <ListaDeDados dados={conteudo.estrutura.dados} />
-            <p className={estilos.certificacao}>{conteudo.estrutura.certificacao}</p>
+          <Revelar atraso={100} className={estilos.cartaoEstrutura}>
+            <ListaDeDados dados={conteudo.estrutura.dados} colunas="duas" />
+
+            <div className={estilos.rodapeEstrutura}>
+              <p className={estilos.certificacao}>{conteudo.estrutura.certificacao}</p>
+              <p className={estilos.destaqueTurma}>
+                <span className={estilos.destaqueTurmaRotulo}>
+                  {conteudo.estrutura.novaTurma.rotulo}
+                </span>
+                {conteudo.estrutura.novaTurma.valor}
+              </p>
+            </div>
           </Revelar>
         </Container>
       </Secao>
 
       <ChamadaDeContato
+        fundo="suave"
         titulo={conteudo.chamadaFinal.titulo}
         paragrafo={conteudo.chamadaFinal.paragrafo}
         acaoPrincipal={conteudo.chamadaFinal.acao}

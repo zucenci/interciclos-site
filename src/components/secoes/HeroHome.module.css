@@ -41,7 +41,7 @@
   color: var(--cor-terracota);
   margin-bottom: var(--e-5);
   opacity: 0;
-  animation: subir 700ms var(--ease-suave) 80ms forwards;
+  animation: subir 350ms var(--ease-suave) 40ms forwards;
 }
 
 .titulo {
@@ -50,7 +50,7 @@
   letter-spacing: -0.025em;
   line-height: var(--lh-h1);
   opacity: 0;
-  animation: subir 900ms var(--ease-suave) 160ms forwards;
+  animation: subir 400ms var(--ease-suave) 80ms forwards;
 }
 
 .textos {
@@ -59,7 +59,7 @@
   max-width: var(--largura-texto);
   margin-top: var(--e-6);
   opacity: 0;
-  animation: subir 900ms var(--ease-suave) 300ms forwards;
+  animation: subir 400ms var(--ease-suave) 140ms forwards;
 }
 
 .paragrafo {
@@ -74,7 +74,7 @@
   gap: var(--e-3);
   margin-top: var(--e-7);
   opacity: 0;
-  animation: subir 900ms var(--ease-suave) 420ms forwards;
+  animation: subir 400ms var(--ease-suave) 200ms forwards;
 }
 
 /* --- Coluna Imagem com Máscara e Selo 10 Anos ---------------------------- */
@@ -82,7 +82,7 @@
 .colunaImagem {
   position: relative;
   opacity: 0;
-  animation: subir 900ms var(--ease-suave) 300ms forwards;
+  animation: subir 400ms var(--ease-suave) 140ms forwards;
   padding-bottom: var(--e-4);
   padding-right: var(--e-4);
 }
@@ -103,7 +103,7 @@
 
 .imagem {
   object-fit: cover;
-  transition: transform 700ms var(--ease-suave);
+  transition: transform 350ms var(--ease-suave);
 }
 
 .molduraImagem:hover .imagem {
@@ -137,7 +137,7 @@
   padding-top: var(--e-6);
   border-top: 1px solid var(--linha);
   opacity: 0;
-  animation: subir 900ms var(--ease-suave) 540ms forwards;
+  animation: subir 400ms var(--ease-suave) 260ms forwards;
 }
 
 .pilar {

@@ -22,6 +22,34 @@
   margin-top: var(--e-4);
 }
 
+/* Bloco de texto com foto ao lado — o texto guarda a medida de leitura e a
+   foto ocupa a coluna vizinha. */
+.blocoComImagem {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+}
+
+.molduraImagem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--raio-xl);
+  background-image: var(--grad-marca);
+  box-shadow: var(--sombra-sutil);
+}
+
+.imagemBloco {
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .blocoComImagem {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Faixa de chamada interna (destaque dentro de uma seção clara). */
 .faixaClinica {
   display: flex;
@@ -48,16 +76,54 @@
   max-width: 58ch;
 }
 
-.certificacao {
-  margin-top: var(--e-7);
-  padding: var(--e-5);
-  border-left: 2px solid var(--cor-terracota);
+/* Ficha da estrutura: cartão claro sobre o fundo nude da seção. */
+.cartaoEstrutura {
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
   background-color: var(--sup-papel);
-  border-radius: 0 var(--raio) var(--raio) 0;
+  box-shadow: var(--sombra-sutil);
+}
+
+.rodapeEstrutura {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-5);
+  margin-top: var(--e-6);
+  padding-top: var(--e-6);
+  border-top: 1px solid var(--linha);
+}
+
+.certificacao {
+  flex: 1 1 34ch;
   font-size: var(--t-pequeno);
   line-height: var(--lh-texto);
   color: var(--txt-corpo);
   max-width: 62ch;
+}
+
+/* A próxima turma ganha peso: é o dado que move a inscrição. */
+.destaqueTurma {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e-1) var(--e-3);
+  padding: var(--e-4) var(--e-5);
+  border: 1px solid var(--cor-fendi);
+  border-radius: var(--raio);
+  background-color: rgba(193, 175, 149, 0.16);
+  font-size: var(--t-corpo);
+  font-weight: var(--peso-semi);
+  color: var(--txt-forte);
+}
+
+.destaqueTurmaRotulo {
+  font-size: var(--t-micro);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
 }
 
 /* Blocos de dois públicos (Clínica Social). */

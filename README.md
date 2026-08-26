@@ -58,7 +58,7 @@ Nenhum componente contém texto editorial. Tudo vive em `src/content`, tipado em
 | Arquivo | Conteúdo |
 | --- | --- |
 | `site.ts` | Nome, URL, navegação, contatos, blocos do rodapé |
-| `frentes.ts` | As sete frentes de atuação (a Especialização com `ancora: true`) |
+| `frentes.ts` | As seis frentes de atuação (a Especialização com `ancora: true`) |
 | `home.ts` | Hero, manifesto, destaque da Especialização, depoimentos |
 | `ciclos.ts` | Seção "Faça parte" / "Em qual ciclo profissional você está agora?" |
 | `depoimentos.ts` | Depoimentos de alunos |
@@ -78,7 +78,7 @@ simplesmente não renderizam suas seções.
 | Formação, especializações, atuação e trajetória das diretoras | `content/paginas/sobre.ts` → `diretoras` |
 | Relação nominal do corpo docente | `content/paginas/sobre.ts` → `docentes` |
 | Depoimentos reais de alunos | `content/depoimentos.ts` |
-| Agenda de eventos | `content/paginas/eventos.ts` → `agenda` |
+| Agenda de eventos | `content/home.ts` → `eventosHome.agenda` |
 | Produção científica do Grupo de Pesquisa | `content/paginas/grupo-de-pesquisa.ts` → `producoes` |
 | Validar redação sobre a parceria com a Faculdade Mario Quintana e os requisitos da ABRATEF | `content/paginas/especializacao.ts` → `estrutura.certificacao` |
 | E-mail institucional | `content/site.ts` → `contato.email` |
@@ -138,7 +138,9 @@ O envio é `POST` em JSON com os campos do formulário. Há um campo-armadilha
 
 ## Instagram
 
-A página `/eventos` mostra os últimos 4 posts de [@inter.ciclos](https://www.instagram.com/inter.ciclos).
+A seção `InstagramRecentes` mostra os últimos 4 posts de [@inter.ciclos](https://www.instagram.com/inter.ciclos).
+Ela ficou sem página desde que `/eventos` foi removida — o componente segue pronto para ser
+colocado onde fizer sentido.
 A busca acontece no servidor, com cache de uma hora, em `src/lib/instagram.ts`.
 
 **Enquanto não houver token, a seção mostra apenas o convite para seguir o perfil** —
@@ -178,6 +180,5 @@ Para ligar a integração:
 | `/circulo-academico` | Círculo Acadêmico de Estudos Sistêmicos |
 | `/grupo-de-pesquisa` | Grupo de Pesquisa |
 | `/lado-de-dentro-do-terapeuta` | Oficina O Lado de Dentro do Terapeuta |
-| `/eventos` | Eventos |
 | `/sobre` | Sobre, compromissos, diretoras, corpo docente |
 | `/contato` | Contato |

@@ -5,7 +5,11 @@ Esta pasta guarda os ativos visuais oficiais do InterCiclos.
 ## Arquivos
 
 - `principal-azul.svg` — assinatura principal (símbolo + InterCiclos +
-  designação), na versão colorida. É a **fonte** de todos os outros ativos.
+  designação), na versão colorida. É a **fonte** da designação e dos demais
+  ativos derivados.
+- `sem-tagline-azul.svg` — assinatura sem a designação (símbolo + InterCiclos).
+  Nesta versão o letreiro é maior em relação ao símbolo do que na principal;
+  é a **fonte** do símbolo e do nome usados no cabeçalho.
 - `simbolo-interciclos.svg` — símbolo isolado, em terracota.
 - `simbolo-branco.svg` — símbolo isolado para fundos escuros.
 - `grafismo-fendi.svg` — grafismo de apoio (circunferências concêntricas),
@@ -13,11 +17,13 @@ Esta pasta guarda os ativos visuais oficiais do InterCiclos.
 
 ## Como o site usa esses arquivos
 
-Os desenhos vetoriais foram extraídos de `principal-azul.svg` para
-`src/components/marca/caminhos.ts`, que guarda:
+Os desenhos vetoriais foram extraídos para `src/components/marca/caminhos.ts`
+— símbolo e nome de `sem-tagline-azul.svg`, designação de `principal-azul.svg` —
+que guarda:
 
 - os traçados do símbolo, do nome e da designação;
-- os `viewBox` de cada peça;
+- os `viewBox` de cada peça, com uma unidade de folga em volta do traçado
+  (sem ela o desenho encosta na borda da caixa e aparece cortado);
 - as proporções do lockup (respiro entre símbolo, nome e designação).
 
 Quem consome esses dados:
@@ -28,9 +34,10 @@ Quem consome esses dados:
   (dados em `caminhosGrafismo.ts`, extraídos de `grafismo-fendi.svg`).
 - `src/app/icon.svg` — favicon, o símbolo centrado em um quadrado.
 
-Se a marca for atualizada, substitua `principal-azul.svg` e regenere
-`caminhos.ts`, os símbolos soltos e o favicon a partir dele — não edite os
-traçados à mão.
+Se a marca for atualizada, substitua os arquivos oficiais e regenere
+`caminhos.ts`, os símbolos soltos e o favicon a partir deles — não edite os
+traçados à mão. As caixas de cada peça são medidas rasterizando o SVG e
+lendo os limites do traçado, e não copiadas do `viewBox` do arquivo.
 
 ## Cores oficiais do arquivo
 

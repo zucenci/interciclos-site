@@ -1,4 +1,5 @@
-import type { Cta } from './types';
+import type { Cta, Evento } from './types';
+import { whatsapp } from './site';
 
 export const heroHome = {
   rotulo: 'Instituto de Formação e Centro de Pesquisa e Terapia',
@@ -29,13 +30,25 @@ export const manifestoHome = {
 export const eventosHome = {
   rotulo: 'Eventos',
   titulo: 'Conhecimento também se constrói nos encontros',
-  acao: { rotulo: 'Ver a agenda de eventos', href: '/eventos' } as Cta,
+  introducao: [
+    'Ao longo de sua trajetória, o InterCiclos promove eventos, workshops, encontros científicos e experiências formativas que aproximam profissionais, pesquisadores, estudantes e diferentes perspectivas sobre a Psicologia e as relações humanas.',
+    'São espaços criados para provocar reflexão, atualizar conhecimentos e fortalecer uma comunidade profissional comprometida com uma prática clínica responsável.',
+  ],
+  /**
+   * PENDENTE: agenda real de eventos. Enquanto a lista estiver vazia, o bloco
+   * mostra apenas o texto e o convite para falar com a equipe.
+   */
+  agenda: [] as Evento[],
+  acao: {
+    rotulo: 'Falar sobre os próximos encontros',
+    href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de saber sobre os próximos eventos.'),
+    externo: true,
+  } as Cta,
 };
 
 export const destaqueEspecializacaoHome = {
-  rotulo: 'Produto âncora',
+  rotulo: 'Conhecimento que encontra a prática.',
   titulo: 'Especialização/Formação em Terapia de Casal e Família',
-  chamada: 'Conhecimento que encontra a prática.',
   paragrafo:
     'Um percurso teórico-prático que integra conhecimento, prática clínica e desenvolvimento do self do terapeuta, aproximando desde cedo o conteúdo estudado da realidade encontrada no consultório.',
   dados: [
@@ -43,8 +56,9 @@ export const destaqueEspecializacaoHome = {
     { rotulo: 'Aulas', valor: 'Mensais, sextas e sábados' },
     { rotulo: 'Chapecó', valor: 'Presencial' },
     { rotulo: 'Passo Fundo', valor: 'Formato híbrido' },
-    { rotulo: 'Nova turma', valor: 'Março de 2027' },
   ],
+  /** Fora da ficha: é a informação que move a decisão de inscrição. */
+  novaTurma: { rotulo: 'Nova turma', valor: 'Março de 2027' },
   acao: { rotulo: 'Quero conhecer a Especialização', href: '/especializacao' } as Cta,
 };
 

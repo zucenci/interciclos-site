@@ -43,7 +43,9 @@
 
 .logo {
   flex: none;
-  font-size: 1.18rem;
+  /* O letreiro sem designação é mais largo que o antigo: encolhe nas telas
+     estreitas para não empurrar o botão do menu. */
+  font-size: clamp(0.95rem, 0.72rem + 0.7vw, 1.18rem);
   transition: font-size var(--dur-media) var(--ease-saida);
 }
 

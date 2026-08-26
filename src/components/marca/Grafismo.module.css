@@ -24,7 +24,7 @@
      deslocamento entrava antes da rotacao e o grafismo orbitava pela tela. */
   translate: -50% -50%;
   transform-origin: 50% 50%;
-  animation: girarGrafismo 260s linear infinite;
+  animation: girarGrafismo 60s linear infinite;
 }
 
 @keyframes girarGrafismo {
@@ -48,7 +48,7 @@
   top: -10%;
   left: 172vw;
   width: 265vw;
-  animation-duration: 300s;
+  animation-duration: 75s;
   animation-direction: reverse;
 }
 
@@ -56,14 +56,14 @@
   top: 112%;
   left: -72vw;
   width: 265vw;
-  animation-duration: 280s;
+  animation-duration: 65s;
 }
 
 .centroDireita {
   top: 50%;
   left: 172vw;
   width: 265vw;
-  animation-duration: 320s;
+  animation-duration: 80s;
   animation-direction: reverse;
 }
 

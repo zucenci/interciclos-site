@@ -7,6 +7,7 @@ import { Botao } from '@/components/ui/Botao';
 import { Etiquetas } from '@/components/ui/Etiquetas';
 import { Revelar } from '@/components/ui/Revelar';
 import { clinicaSocial as conteudo } from '@/content/paginas/clinica-social';
+import { whatsapp } from '@/content/site';
 import estilos from '@/styles/pagina.module.css';
 
 export const metadata: Metadata = {
@@ -53,6 +54,11 @@ export default function PaginaClinicaSocial() {
       <ChamadaDeContato
         titulo="Ainda com dúvidas sobre a Clínica Social?"
         paragrafo="Nossa equipe explica como funcionam os atendimentos, a supervisão e os critérios de participação."
+        acaoPrincipal={{
+          rotulo: 'Fale com o InterCiclos',
+          href: whatsapp('Olá! Vim pelo site do InterCiclos e tenho dúvidas sobre a Clínica Social.'),
+          externo: true,
+        }}
       />
     </>
   );

@@ -15,19 +15,13 @@
   max-width: 46ch;
 }
 
+/* Medida própria, mais larga que a do corpo de texto, para o título crescer
+   sem passar de duas linhas. */
 .titulo {
-  font-size: var(--t-h2);
+  max-width: 30rem;
+  font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
   font-weight: var(--peso-leve);
   color: var(--txt-inverso);
-}
-
-.chamada {
-  margin-top: var(--e-4);
-  font-family: var(--fonte-texto);
-  font-size: var(--t-h3);
-  font-weight: var(--peso-leve);
-  line-height: var(--lh-h3);
-  color: var(--cor-fendi);
 }
 
 .paragrafo {
@@ -50,10 +44,33 @@
 }
 
 .tituloFicha {
-  margin-bottom: var(--e-4);
+  margin-bottom: var(--e-5);
   font-family: var(--fonte-texto);
   font-size: var(--t-micro);
   font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-fendi);
+}
+
+/* A próxima turma sai da ficha e ganha peso: é o dado que move a inscrição. */
+.novaTurma {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e-1) var(--e-3);
+  margin-top: var(--e-5);
+  padding: var(--e-4);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  background-color: rgba(193, 175, 149, 0.12);
+  font-size: var(--t-corpo);
+  font-weight: var(--peso-semi);
+  color: var(--txt-inverso);
+}
+
+.novaTurmaRotulo {
+  font-size: var(--t-micro);
   letter-spacing: var(--espaco-letra-rotulo);
   text-transform: uppercase;
   color: var(--cor-fendi);

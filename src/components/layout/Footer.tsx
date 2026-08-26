@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Container } from './Container';
 import { AssinaturaReduzida } from '@/components/marca/AssinaturaReduzida';
-import { site, contato, rodape } from '@/content/site';
+import { site, contato, rodape, whatsapp } from '@/content/site';
 import estilos from './Footer.module.css';
 
 export function Footer() {
@@ -47,7 +47,7 @@ export function Footer() {
             <ul className={estilos.listaLinks}>
               <li>
                 <a
-                  href={contato.whatsappLink}
+                  href={whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de falar com a equipe.')}
                   className={estilos.link}
                   target="_blank"
                   rel="noopener noreferrer"

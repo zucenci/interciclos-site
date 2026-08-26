@@ -11,7 +11,7 @@
 .fundo {
   transform-box: view-box;
   transform-origin: 50% 50%;
-  animation: girarSelo 48s linear infinite;
+  animation: girarSelo 18s linear infinite;
 }
 
 @keyframes girarSelo {
