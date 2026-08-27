@@ -158,9 +158,16 @@
   margin: 0;
 }
 
+/* Sem `scroll-behavior: smooth` aqui de propósito. A propriedade na raiz vale
+   para toda rolagem programática, inclusive a que o roteador faz ao chegar numa
+   URL com âncora: os itens do menu que apontam para blocos da home (/#frentes,
+   /#eventos) mostravam o topo da página e desciam deslizando até 1900px ou mais.
+   Com `auto`, a chegada é direta no bloco.
+
+   O `scroll-padding-top` continua: ele reserva a altura do cabeçalho tanto no
+   salto instantâneo quanto no suave. */
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--altura-header) + var(--e-6));
 }
 

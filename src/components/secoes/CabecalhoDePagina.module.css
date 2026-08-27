@@ -84,14 +84,24 @@
   color: var(--cor-fendi);
 }
 
+/* A medida curta, e nao a de leitura padrao: o `ch` acompanha a fonte, e no
+   corpo de lead 68ch dava quase 90 caracteres por linha — longe demais para o
+   olho voltar ao inicio da linha seguinte, e o resto do paragrafo sobrava numa
+   linha orfa de duas ou tres palavras. */
 .introducao {
   display: grid;
   gap: var(--e-4);
-  max-width: var(--largura-texto);
+  max-width: var(--largura-texto-curta);
   margin-top: var(--e-6);
   font-size: var(--t-lead);
   line-height: var(--lh-texto);
   color: var(--txt-corpo);
+}
+
+/* Com foto ao lado quem limita a medida e a propria coluna, mais estreita que
+   a curta: aqui o teto so precisa nao apertar mais do que isso. */
+.comImagem .introducao {
+  max-width: var(--largura-texto);
 }
 
 .destaque .introducao {

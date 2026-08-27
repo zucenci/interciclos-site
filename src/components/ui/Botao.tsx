@@ -45,7 +45,16 @@ export function Botao({
   const classes = cx(estilos.botao, estilos[variante], estilos[tamanho], className);
 
   if ('href' in resto && resto.href) {
-    const { href, externo } = resto;
+    const { href } = resto;
+    /*
+     * Quem decide se o link sai do site é o próprio endereço, não a chamada.
+     * Depender do `externo` que cada página repassa já deixou botões de
+     * WhatsApp abrindo na mesma aba: o conteúdo declarava `externo: true` e a
+     * página esquecia de encaminhar a prop. Todo endereço absoluto — wa.me,
+     * Instagram — abre em aba nova por conta própria; `externo` continua
+     * disponível como reforço.
+     */
+    const externo = resto.externo || /^https?:\/\//i.test(href);
     const propsExternas = externo ? { target: '_blank', rel: 'noopener noreferrer' } : {};
     const interior = (
       <>
