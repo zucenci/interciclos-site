@@ -41,16 +41,18 @@
   height: var(--altura-header-compacto);
 }
 
+/* A marca é SVG e se mede em em: --tam-simbolo vale 2.25em, então o font-size
+   daqui comanda a altura do símbolo (2rem sobre o banner, 3.4rem nas telas
+   largas). O letreiro sem designação é largo, por isso encolhe junto nas telas
+   estreitas — senão empurra o botão do menu para fora. */
 .logo {
   flex: none;
-  /* O letreiro sem designação é mais largo que o antigo: encolhe nas telas
-     estreitas para não empurrar o botão do menu. */
-  font-size: clamp(0.95rem, 0.72rem + 0.7vw, 1.18rem);
+  font-size: clamp(0.89rem, 0.67rem + 0.71vw, 1.51rem);
   transition: font-size var(--dur-media) var(--ease-saida);
 }
 
 .compacto .logo {
-  font-size: 0.94rem;
+  font-size: clamp(0.67rem, 0.51rem + 0.44vw, 0.93rem);
 }
 
 /* --- Navegação desktop --------------------------------------------------- */
@@ -128,6 +130,15 @@
   transition:
     opacity var(--dur-media) var(--ease-suave),
     transform var(--dur-media) var(--ease-suave);
+}
+
+/* Ponte invisível sobre o vão entre o gatilho e o painel: sem ela o ponteiro
+   passa por uma faixa que não pertence a nenhum dos dois e o menu fecha. */
+.submenu::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem 0 auto 0;
+  height: 0.75rem;
 }
 
 .submenuVisivel {

@@ -51,6 +51,7 @@ export function HeroHome() {
                 alt="Grupo de alunos e psicólogos reunidos em momento de estudo e troca profissional"
                 fill
                 sizes="(max-width: 900px) 100vw, 45vw"
+                quality={90}
                 priority
                 className={estilos.imagem}
               />

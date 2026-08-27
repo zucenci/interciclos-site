@@ -30,7 +30,7 @@ export const circuloAcademico = {
   ],
   formato: ['Encontros bimestrais', 'Presencial em Chapecó'],
   acao: {
-    rotulo: 'Quero participar no WhatsApp',
+    rotulo: 'Quero participar',
     href: whatsapp(
       'Olá! Vim pelo site do InterCiclos e gostaria de participar do Círculo Acadêmico de Estudos Sistêmicos.',
     ),

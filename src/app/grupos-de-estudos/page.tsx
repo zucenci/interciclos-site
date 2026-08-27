@@ -25,6 +25,7 @@ export default function PaginaGruposDeEstudos() {
       />
 
       <ChamadaDeContato
+        fundo="suave"
         titulo="Quer participar de um dos grupos?"
         paragrafo="Fale com a nossa equipe para saber sobre vagas, datas dos encontros e forma de participação."
         acaoPrincipal={conteudo.acao}

@@ -44,6 +44,17 @@
   object-fit: cover;
 }
 
+/* Fotos em retrato (2:3) na coluna lateral: no 4/3 padrão o recorte corta as
+   pessoas. A moldura vertical mantém a cena inteira e o object-position puxa o
+   enquadramento para a altura dos rostos, deixando o teto fora do quadro. */
+.molduraRetrato {
+  aspect-ratio: 4 / 5;
+}
+
+.molduraRetrato .imagemBloco {
+  object-position: center 58%;
+}
+
 @media (max-width: 900px) {
   .blocoComImagem {
     grid-template-columns: 1fr;

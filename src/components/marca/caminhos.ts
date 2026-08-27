@@ -14,18 +14,18 @@ export const MARCA_AZUL = '#35536c';
 /** Terracota InterCiclos do arquivo oficial. */
 export const MARCA_TERRACOTA = '#b08067';
 
-export const SIMBOLO_VIEWBOX = '1 1 203.99 199.57';
-export const NOME_VIEWBOX = '229.24 26.01 1006.47 149.8';
+export const SIMBOLO_VIEWBOX = '-1 -1 207.99 203.57';
+export const NOME_VIEWBOX = '227.24 24.01 1010.47 153.8';
 export const ASSINATURA_VIEWBOX = '230.74 146.6 791.08 46.53';
 
 /** Proporcoes do lockup oficial, tomando a altura do simbolo como unidade. */
 export const PROPORCOES = {
-  simboloLargura: 1.0221,
-  nomeLargura: 5.0432,
-  nomeAltura: 0.7506,
-  assinaturaAltura: 0.2966,
+  simboloLargura: 1.0217,
+  nomeLargura: 4.9637,
+  nomeAltura: 0.7555,
+  assinaturaAltura: 0.292,
   /** Respiro entre simbolo e letreiro na versao horizontal. */
-  respiroHorizontal: 0.1215,
+  respiroHorizontal: 0.0995,
   /** Respiro entre o nome e a assinatura. */
   respiroAssinatura: 0.1,
 } as const;

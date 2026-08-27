@@ -37,7 +37,7 @@ export const clinicaSocial = {
       ],
       condicoes: ['Atendimentos online', 'Valores sociais'],
       acao: {
-        rotulo: 'Busco atendimento no WhatsApp',
+        rotulo: 'Busco atendimento',
         href: whatsapp(
           'Olá! Vim pelo site do InterCiclos e gostaria de saber como buscar atendimento na Clínica Social.',
         ),

@@ -11,7 +11,7 @@ type Props = {
   rotulo?: string;
   titulo?: string;
   chamada?: string;
-  colunas?: 'umaColuna' | 'duasColunas' | 'tresColunas';
+  colunas?: 'umaColuna' | 'duasColunas' | 'tresColunas' | 'quatroColunas' | 'bento';
   fundo?: 'papel' | 'suave' | 'media';
   numerado?: boolean;
   id?: string;

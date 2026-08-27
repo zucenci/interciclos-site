@@ -16,6 +16,10 @@ export const grupoDePesquisa = {
     paragrafo:
       'Alunos vinculados às turmas de Especialização do InterCiclos podem integrar o grupo e participar da produção científica desenvolvida pelo Instituto.',
     acao: { rotulo: 'Conheça a Especialização', href: '/especializacao' } as Cta,
+    imagem: {
+      src: '/images/grupo-de-pesquisa.jpg',
+      alt: 'Duas psicólogas do InterCiclos estudando juntas diante de notebooks, em uma mesa de reunião.',
+    },
   },
   /**
    * PENDENTE: publicações, linhas de pesquisa e trabalhos apresentados.

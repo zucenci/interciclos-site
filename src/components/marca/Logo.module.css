@@ -11,7 +11,7 @@
 
   display: inline-flex;
   align-items: center;
-  gap: calc(var(--tam-simbolo) * 0.1215); /* respiro símbolo → letreiro */
+  gap: calc(var(--tam-simbolo) * 0.0995); /* respiro símbolo → letreiro */
   line-height: 0;
 }
 
@@ -21,8 +21,24 @@
   gap: calc(var(--tam-simbolo) * 0.2);
 }
 
+/* O SVG recorta no próprio viewport: com a arte encostando na borda da caixa,
+   meio pixel de arredondamento já raspa o desenho. Os viewBox têm 3 unidades
+   de folga e aqui o recorte fica desligado. */
+.simbolo,
+.nome,
+.designacao {
+  overflow: visible;
+}
+
+/* As formas do símbolo são preenchidas, não traçadas: o contorno na mesma cor
+   engrossa cada laço meio stroke-width para fora, sem redesenhar a arte. */
+.simbolo path {
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
 .simbolo {
-  width: calc(var(--tam-simbolo) * 1.0221);
+  width: calc(var(--tam-simbolo) * 1.0217);
   height: var(--tam-simbolo);
   flex: none;
   transition: transform var(--dur-media) var(--ease-suave);
@@ -38,13 +54,13 @@
 }
 
 .nome {
-  width: calc(var(--tam-simbolo) * 5.0432);
-  height: calc(var(--tam-simbolo) * 0.7506);
+  width: calc(var(--tam-simbolo) * 4.9637);
+  height: calc(var(--tam-simbolo) * 0.7555);
 }
 
 .designacao {
-  width: calc(var(--tam-simbolo) * 5.0432);
-  height: calc(var(--tam-simbolo) * 0.2966);
+  width: calc(var(--tam-simbolo) * 4.9637);
+  height: calc(var(--tam-simbolo) * 0.292);
   margin-top: calc(var(--tam-simbolo) * 0.1); /* respiro nome → assinatura */
 }
 
@@ -61,6 +77,10 @@
   fill: var(--cor-bronze);
 }
 
+.cor .simbolo path {
+  stroke: var(--cor-bronze);
+}
+
 .cor .nome path {
   fill: var(--cor-azul);
 }
@@ -69,8 +89,16 @@
   fill: var(--txt-inverso);
 }
 
+.branco .simbolo path {
+  stroke: var(--txt-inverso);
+}
+
 .tinta path {
   fill: var(--cor-tinta);
+}
+
+.tinta .simbolo path {
+  stroke: var(--cor-tinta);
 }
 
 @media (prefers-reduced-motion: reduce) {

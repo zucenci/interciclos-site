@@ -36,7 +36,7 @@ export default function PaginaSobre() {
         rotulo={conteudo.compromissos.rotulo}
         titulo={conteudo.compromissos.titulo}
         fundo="suave"
-        colunas="tresColunas"
+        colunas="bento"
         numerado
       />
 

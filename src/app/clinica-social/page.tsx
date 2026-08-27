@@ -52,6 +52,7 @@ export default function PaginaClinicaSocial() {
       </Secao>
 
       <ChamadaDeContato
+        fundo="suave"
         titulo="Ainda com dúvidas sobre a Clínica Social?"
         paragrafo="Nossa equipe explica como funcionam os atendimentos, a supervisão e os critérios de participação."
         acaoPrincipal={{

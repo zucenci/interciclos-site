@@ -60,11 +60,12 @@ export const sobre = {
 };
 
 /**
- * PENDENTE DE CONTEÚDO INSTITUCIONAL.
+ * PENDENTE DE VALIDAÇÃO INSTITUCIONAL.
  *
- * Inserir formação acadêmica, especializações, experiência clínica e docente
- * e o texto de trajetória de cada diretora. Os componentes ignoram listas
- * vazias e strings vazias — preencha na ordem que o material ficar pronto.
+ * As listas trazem as credenciais fornecidas. Os textos de trajetória são
+ * redação editorial construída a partir dessas mesmas credenciais — não
+ * acrescentam fatos novos, mas devem ser lidos e aprovados pelas diretoras
+ * antes da publicação. Os componentes ignoram listas e strings vazias.
  */
 export const diretoras: Diretora[] = [
   {
@@ -88,7 +89,7 @@ export const diretoras: Diretora[] = [
       'Experiência em Desenvolvimento de Equipes',
     ],
     trajetoria:
-      'Psicóloga, Mestre em Administração e Terapeuta de Casal e Família. Aluna da Accademia di Psicoterapia della Famiglia, supervisora, palestrante, diretora do InterCiclos e especialista em desenvolvimento de equipes.',
+      'Cristiane Batista é psicóloga e atua com um olhar atento às relações humanas e à forma como os vínculos influenciam a vida pessoal e profissional. No consultório, trabalha com casais e famílias pela abordagem sistêmica, buscando compreender cada história em sua complexidade e singularidade. Também leva essa perspectiva para o trabalho com equipes, supervisões e palestras, contribuindo para relações mais conscientes e para o desenvolvimento de pessoas e profissionais.',
   },
   {
     nome: 'Danielle Doss Damo',
@@ -108,10 +109,10 @@ export const diretoras: Diretora[] = [
     ],
     atuacao: [
       'Diretora do InterCiclos',
-      'Autora dos livros: "Quando o Divórcio Acontece só no Papel" e "O Self do Terapeuta: A cartografia dos tesouros escondidos no terapeuta"',
+      'Autora dos livros: "Quando o Divórcio Acontece só no Papel" e "O Self do Terapeuta"',
     ],
     trajetoria:
-      'Psicóloga, Mestre em Psicologia e Terapeuta de Casal e Família. Aluna da Accademia di Psicoterapia della Famiglia, supervisora, palestrante, diretora do InterCiclos e autora das obras "Quando o Divórcio Acontece só no Papel" e "O Self do Terapeuta: A cartografia dos tesouros escondidos no terapeuta".',
+      'Danielle Doss Damo é psicóloga e dedica seu trabalho à compreensão das relações, dos vínculos e das transformações que atravessam a vida familiar. Sua atuação combina a prática clínica com a reflexão e a produção de conhecimento sobre temas relacionados à psicoterapia, aos relacionamentos e à experiência de terapeutas e pacientes. Esse olhar também se expressa em seus livros, supervisões e palestras, nos quais compartilha sua experiência e seus estudos com outros profissionais.',
   },
 ];
 

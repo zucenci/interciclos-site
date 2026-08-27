@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Container } from '@/components/layout/Container';
 import { Secao } from '@/components/layout/Secao';
 import { CabecalhoDePagina } from '@/components/secoes/CabecalhoDePagina';
@@ -22,18 +23,30 @@ export default function PaginaGrupoDePesquisa() {
       <CabecalhoDePagina conteudo={conteudo.cabecalho} />
 
       <Secao fundo="suave">
-        <Container largura="estreito">
-          <Revelar>
-            <TituloDeSecao
-              rotulo="Participação"
-              titulo={conteudo.participacao.titulo}
-              className={estilos.tituloEstreito}
-            />
-            <p className={estilos.paragrafo}>{conteudo.participacao.paragrafo}</p>
-            <div className={estilos.acaoDaSecao}>
-              <Botao href={conteudo.participacao.acao.href} variante="secundario">
-                {conteudo.participacao.acao.rotulo}
-              </Botao>
+        <Container>
+          <Revelar className={estilos.blocoComImagem}>
+            <div>
+              <TituloDeSecao
+                rotulo="Participação"
+                titulo={conteudo.participacao.titulo}
+                className={estilos.tituloEstreito}
+              />
+              <p className={estilos.paragrafo}>{conteudo.participacao.paragrafo}</p>
+              <div className={estilos.acaoDaSecao}>
+                <Botao href={conteudo.participacao.acao.href} variante="secundario">
+                  {conteudo.participacao.acao.rotulo}
+                </Botao>
+              </div>
+            </div>
+
+            <div className={estilos.molduraImagem}>
+              <Image
+                src={conteudo.participacao.imagem.src}
+                alt={conteudo.participacao.imagem.alt}
+                fill
+                sizes="(max-width: 900px) 100vw, 45vw"
+                className={estilos.imagemBloco}
+              />
             </div>
           </Revelar>
         </Container>
@@ -64,6 +77,7 @@ export default function PaginaGrupoDePesquisa() {
       ) : null}
 
       <ChamadaDeContato
+        fundo={conteudo.producoes.length > 0 ? 'papel' : 'suave'}
         titulo="Quer saber mais sobre a pesquisa no InterCiclos?"
         paragrafo="Converse com a nossa equipe sobre linhas de investigação, encontros do grupo e formas de participação."
         acaoPrincipal={conteudo.acao}

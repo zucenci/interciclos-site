@@ -6,59 +6,7 @@
 /* --- Cabeçalho ----------------------------------------------------------- */
 
 .cabecalho {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 1rem + 4vw, 5rem);
-  align-items: end;
   margin-bottom: var(--e-8);
-}
-
-.cabecalhoTitulo {
-  max-width: 44ch;
-}
-
-.aspasDecorativas {
-  font-family: var(--fonte-texto);
-  font-size: 5rem;
-  line-height: 0.6;
-  color: var(--cor-terracota);
-  margin-bottom: var(--e-4);
-  display: block;
-  user-select: none;
-}
-
-.tituloSecao {
-  font-size: var(--t-h2);
-  font-weight: var(--peso-leve);
-  letter-spacing: var(--espaco-letra-titulo);
-  color: var(--cor-azul);
-}
-
-.listaBeneficios {
-  display: flex;
-  flex-direction: column;
-  gap: var(--e-2);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.listaBeneficios li {
-  position: relative;
-  padding-left: var(--e-4);
-  font-size: var(--t-corpo);
-  line-height: var(--lh-texto);
-  color: var(--txt-corpo);
-}
-
-.listaBeneficios li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.75em;
-  width: 8px;
-  height: 1px;
-  background-color: var(--cor-terracota);
 }
 
 /* --- Carrossel Slider ---------------------------------------------------- */
@@ -70,59 +18,60 @@
   width: 100%;
 }
 
-/* Container com máscara de esmaecimento: estado estático = borda esquerda 100% nítida */
+/*
+   A faixa vive fora do Container e ocupa a largura da janela. O recuo inicial
+   (--inicio) recoloca o primeiro card na mesma coluna do texto; os cards
+   seguintes seguem além da margem direita, sem corte nem esmaecimento, dando
+   a leitura de que a fileira continua.
+*/
 .janelaContainer {
   width: 100%;
-  overflow: hidden;
   position: relative;
   padding-block: var(--e-2);
-  /* Em repouso: borda esquerda totalmente limpa e nítida (#000 0%), esmaecimento só na direita */
-  mask-image: linear-gradient(to right, #000 0%, #000 76%, transparent 98%);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    #000 0%,
-    #000 76%,
-    transparent 98%
-  );
-  transition:
-    mask-image 300ms var(--ease-suave),
-    -webkit-mask-image 300ms var(--ease-suave);
 
-  --largura-card: 62%;
   --gap-trilho: var(--e-5);
-}
-
-/* APENAS durante o movimento de rotação (slide ativo): ativa o esmaecimento na borda esquerda */
-.janelaContainer[data-rotacionando='true'] {
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 4.5%,
-    #000 76%,
-    transparent 98%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 4.5%,
-    #000 76%,
-    transparent 98%
-  );
+  /*
+     O card em foco fica centrado na janela e os vizinhos aparecem cortados dos
+     dois lados — três cards em tela. A largura vem em vw (e não em %) porque a
+     sobra lateral depende dela: uma porcentagem se mediria pela caixa interna
+     do trilho, que já desconta essa mesma sobra.
+  */
+  --largura-card: clamp(300px, 46vw, 720px);
+  --inicio: calc(50% - var(--largura-card) / 2);
 }
 
 /* Trilho deslizante com animação suave de transição */
+/* Rolagem nativa: arrastar com o dedo (ou com o trackpad) move os cards, e o
+   snap encaixa o próximo no lugar. A barra de rolagem fica escondida — a
+   posição já é indicada pela linha de progresso abaixo. */
 .trilho {
   display: flex;
   gap: var(--gap-trilho);
   width: 100%;
-  transition: transform 540ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: transform;
+  overflow-x: auto;
+  /* Com overflow-x definido, o eixo vertical deixa de ser `visible` e o corte
+     passa a acontecer na borda do padding. A sombra do card em destaque desce
+     22px (--sombra-media: deslocamento 18 + metade do borrão 24 - espalhamento
+     20), então a folga de baixo precisa cobrir isso. */
+  overflow-y: hidden;
+  padding-block: var(--e-3) var(--e-6);
+  padding-inline: var(--inicio);
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.trilho::-webkit-scrollbar {
+  display: none;
 }
 
 /* Itens individuais no trilho */
 .itemCard {
   flex: 0 0 var(--largura-card);
   min-width: 0;
+  scroll-snap-align: center;
 }
 
 .itemVazando {
@@ -141,12 +90,14 @@
   background-color: var(--sup-papel);
   border-radius: var(--raio-grande);
   border: 1px solid var(--linha);
+  /* Acompanha a duração da rolagem animada: o card acende no mesmo tempo em
+     que chega ao centro, em vez de trocar de estado antes ou depois. */
   transition:
-    border-color 540ms var(--ease-suave),
-    box-shadow 540ms var(--ease-suave),
-    transform 540ms var(--ease-suave),
-    opacity 540ms var(--ease-suave),
-    filter 540ms var(--ease-suave);
+    border-color 700ms var(--ease-suave),
+    box-shadow 700ms var(--ease-suave),
+    transform 700ms var(--ease-suave),
+    opacity 700ms var(--ease-suave),
+    filter 700ms var(--ease-suave);
 }
 
 /* Card Destacado (Principal em foco) */
@@ -333,67 +284,15 @@
 /* --- Responsivo ---------------------------------------------------------- */
 
 @media (max-width: 900px) {
-  .cabecalho {
-    grid-template-columns: 1fr;
-    gap: var(--e-5);
-  }
-
   .janelaContainer {
-    --largura-card: 76%;
-    mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 98%);
-    -webkit-mask-image: linear-gradient(
-      to right,
-      #000 0%,
-      #000 72%,
-      transparent 98%
-    );
-  }
-
-  .janelaContainer[data-rotacionando='true'] {
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 5%,
-      #000 72%,
-      transparent 98%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 5%,
-      #000 72%,
-      transparent 98%
-    );
+    /* Um card por vez, com os vizinhos espiando dos dois lados. */
+    --largura-card: 82vw;
   }
 }
 
 @media (max-width: 600px) {
   .janelaContainer {
-    --largura-card: 85%;
+    --largura-card: 86vw;
     --gap-trilho: var(--e-4);
-    mask-image: linear-gradient(to right, #000 0%, #000 70%, transparent 98%);
-    -webkit-mask-image: linear-gradient(
-      to right,
-      #000 0%,
-      #000 70%,
-      transparent 98%
-    );
-  }
-
-  .janelaContainer[data-rotacionando='true'] {
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 6%,
-      #000 70%,
-      transparent 98%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 6%,
-      #000 70%,
-      transparent 98%
-    );
   }
 }

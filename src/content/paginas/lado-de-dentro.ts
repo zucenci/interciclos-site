@@ -21,6 +21,10 @@ export const ladoDeDentro = {
       'Não é somente sobre aprender a atender.',
       'É também sobre compreender quem está presente quando você ocupa a cadeira de terapeuta.',
     ],
+    imagem: {
+      src: '/images/lado-de-dentro-oficina.jpg',
+      alt: 'Danielle Doss Damo com O Self do Terapeuta, livro de sua autoria, na estante do instituto.',
+    },
   },
   eixos: [
     { titulo: 'Ressonâncias', descricao: 'O que das histórias escutadas ecoa na própria história.' },
@@ -30,7 +34,7 @@ export const ladoDeDentro = {
   ],
   formato: ['Imersão presencial em Chapecó', 'Realizada uma vez ao ano'],
   acao: {
-    rotulo: 'Quero participar no WhatsApp',
+    rotulo: 'Quero participar',
     href: whatsapp(
       'Olá! Vim pelo site do InterCiclos e gostaria de participar da oficina O Lado de Dentro do Terapeuta.',
     ),

@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Container } from '@/components/layout/Container';
 import { Secao } from '@/components/layout/Secao';
 import { Revelar } from '@/components/ui/Revelar';
+import { TituloDeSecao } from '@/components/ui/TituloDeSecao';
 import { depoimentosHome as conteudo } from '@/content/home';
 import { depoimentos } from '@/content/depoimentos';
-import type { Depoimento } from '@/content/types';
+import { cx } from '@/lib/utils';
 import estilos from './CarrosselDepoimentos.module.css';
 
 /** Gera as iniciais do nome para o avatar. */
@@ -19,59 +20,153 @@ function iniciais(nome: string): string {
     .join('');
 }
 
-const PLACEHOLDER: Depoimento[] = [
-  {
-    texto:
-      'A especialização mudou a forma como olho para as famílias. Comecei a perceber padrões que antes passavam despercebidos, e isso transformou minha prática clínica de maneira muito concreta.',
-    autor: 'Ana Lima',
-    contexto: 'Especialização — Turma 2023',
-  },
-  {
-    texto:
-      'Tive a chance de trabalhar casos reais com supervisão desde o primeiro módulo. A segurança que isso trouxe para o consultório é algo que não encontrei em nenhuma outra formação.',
-    autor: 'Miguel Souza',
-    contexto: 'Especialização — Turma 2022',
-  },
-  {
-    texto:
-      'Criatividade, escuta sistêmica e sempre uma lente muito cuidadosa sobre as relações. O InterCiclos ensina a olhar para o que move as pessoas.',
-    autor: 'Jennifer Ramos',
-    contexto: 'Formação Continuada',
-  },
-  {
-    texto:
-      'O trabalho de self integrado à formação foi o grande diferencial. Não aprendi apenas técnicas — aprendi a me conhecer como terapeuta.',
-    autor: 'Carlos Mendes',
-    contexto: 'Clínica Social',
-  },
-];
-
 export function CarrosselDepoimentos() {
-  const lista = depoimentos.length > 0 ? depoimentos : PLACEHOLDER;
-  const [ativo, setAtivo] = useState(0);
-  const [rotacionando, setRotacionando] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const lista = depoimentos;
+  const trilhoRef = useRef<HTMLDivElement>(null);
+  const paradaRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const animacaoRef = useRef<number | null>(null);
 
   const total = lista.length;
 
-  function navegarPara(novoIndice: number) {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setRotacionando(true);
-    setAtivo(novoIndice);
+  /*
+   * A rolagem é infinita: a lista é renderizada três vezes e o visitante
+   * começa na cópia do meio. Quando a rolagem para dentro de uma cópia
+   * lateral, a posição salta uma cópia inteira — como o conteúdo é idêntico,
+   * o salto é invisível e nunca se chega a uma ponta.
+   */
+  const cards = total > 1 ? [...lista, ...lista, ...lista] : lista;
+  const inicioDoMeio = total > 1 ? total : 0;
+  /** Índice dentro do trilho triplicado. */
+  const [indice, setIndice] = useState(inicioDoMeio);
+  const ativo = ((indice % total) + total) % total;
 
-    // O esmaecimento à esquerda é ativado apenas durante o movimento (550ms)
-    timerRef.current = setTimeout(() => {
-      setRotacionando(false);
-    }, 550);
+  /*
+   * Posição de rolagem que centraliza cada card, lida do próprio DOM. Um passo
+   * fixo (largura + vão) não serve: as larguras mudam a cada quebra de layout,
+   * e a conta duplicada em CSS e JavaScript sairia de sincronia em silêncio.
+   */
+  function posicoes(): number[] {
+    const trilho = trilhoRef.current;
+    if (!trilho) return [];
+    const base = (trilho.children[0] as HTMLElement | undefined)?.offsetLeft ?? 0;
+    return Array.from(trilho.children).map(
+      (filho) => (filho as HTMLElement).offsetLeft - base,
+    );
+  }
+
+  useEffect(() => {
+    const trilho = trilhoRef.current;
+    const primeiro = trilho?.children[0] as HTMLElement | undefined;
+    const doMeio = trilho?.children[inicioDoMeio] as HTMLElement | undefined;
+    if (trilho && primeiro && doMeio) trilho.scrollLeft = doMeio.offsetLeft - primeiro.offsetLeft;
+    return () => {
+      if (paradaRef.current) clearTimeout(paradaRef.current);
+      if (animacaoRef.current) cancelAnimationFrame(animacaoRef.current);
+    };
+  }, [inicioDoMeio]);
+
+  /*
+   * Rolagem animada quadro a quadro. O `behavior: 'smooth'` do navegador tem
+   * duração e curva fixas, curtas demais para a distância de um card inteiro —
+   * daí a sensação de movimento duro. Aqui a curva desacelera até parar.
+   */
+  function rolarAte(destino: number, duracao = 700) {
+    const trilho = trilhoRef.current;
+    if (!trilho) return;
+    if (animacaoRef.current) cancelAnimationFrame(animacaoRef.current);
+
+    const partida = trilho.scrollLeft;
+    const distancia = destino - partida;
+    if (Math.abs(distancia) < 1) return;
+
+    // O encaixe disputaria com a animação a cada quadro; volta ao fim dela.
+    const encaixe = trilho.style.scrollSnapType;
+    trilho.style.scrollSnapType = 'none';
+
+    /*
+     * O marco zero vem do primeiro quadro, e não de um relógio lido aqui: entre
+     * a leitura e o quadro inicial passa tempo, e a animação começaria com um
+     * pedaço do percurso já vencido — um salto visível a cada troca de card.
+     */
+    let inicio: number | null = null;
+
+    const quadro = (agora: number) => {
+      inicio ??= agora;
+      const t = Math.min((agora - inicio) / duracao, 1);
+      // easeOutQuint: parte com energia e chega quase parando.
+      const suave = 1 - (1 - t) ** 5;
+      trilho.scrollLeft = partida + distancia * suave;
+
+      if (t < 1) {
+        animacaoRef.current = requestAnimationFrame(quadro);
+        return;
+      }
+      animacaoRef.current = null;
+      trilho.style.scrollSnapType = encaixe;
+      normalizar();
+    };
+
+    animacaoRef.current = requestAnimationFrame(quadro);
+  }
+
+  /*
+   * Navegar só rola. Quem está em destaque é decidido pela posição (aoRolar),
+   * nunca pelo clique.
+   */
+  function navegarPara(novoIndice: number) {
+    rolarAte(posicoes()[novoIndice] ?? 0);
+  }
+
+  /*
+   * Recentraliza a rolagem na cópia do meio. Só roda quando o movimento para:
+   * mexer em scrollLeft no meio da inércia trava a rolagem no iOS.
+   */
+  function normalizar() {
+    const trilho = trilhoRef.current;
+    const alvos = posicoes();
+    if (!trilho || total < 2 || alvos.length < total * 2) return;
+    if (animacaoRef.current) return;
+    const umaCopia = alvos[total] - alvos[0];
+    // Só a posição muda: o índice é recalculado pelo onScroll que este salto
+    // dispara, e assim nunca sai de sincronia com o que está na tela.
+    if (trilho.scrollLeft < alvos[total] - 1) {
+      trilho.scrollLeft += umaCopia;
+    } else if (trilho.scrollLeft >= alvos[total * 2] - 1) {
+      trilho.scrollLeft -= umaCopia;
+    }
+  }
+
+  /*
+   * Fonte única do destaque: o card em foco é sempre o que está mais perto do
+   * centro, seja o movimento um arraste, uma seta ou um clique.
+   */
+  function aoRolar() {
+    const trilho = trilhoRef.current;
+    const alvos = posicoes();
+    if (!trilho || alvos.length === 0) return;
+
+    if (paradaRef.current) clearTimeout(paradaRef.current);
+    paradaRef.current = setTimeout(normalizar, 140);
+
+    let maisPerto = 0;
+    for (let i = 1; i < alvos.length; i += 1) {
+      const distancia = Math.abs(alvos[i] - trilho.scrollLeft);
+      if (distancia < Math.abs(alvos[maisPerto] - trilho.scrollLeft)) maisPerto = i;
+    }
+    setIndice(maisPerto);
   }
 
   function anterior() {
-    navegarPara((ativo - 1 + total) % total);
+    navegarPara(indice - 1);
   }
 
   function proximo() {
-    navegarPara((ativo + 1) % total);
+    navegarPara(indice + 1);
   }
+
+  // Sem depoimentos não há seção: as contas de índice dividem por `total` e
+  // sairiam NaN/Infinity num bloco que não teria o que mostrar de todo jeito.
+  if (total === 0) return null;
 
   /* Porcentagem de progresso para a linha */
   const pct = Math.round(((ativo + 1) / total) * 100);
@@ -79,52 +174,47 @@ export function CarrosselDepoimentos() {
   return (
     <Secao fundo="suave" id="depoimentos">
       <Container>
-        {/* Cabeçalho acima (Título à esquerda, Destaques à direita) */}
         <Revelar>
-          <header className={estilos.cabecalho}>
-            <div className={estilos.cabecalhoTitulo}>
-              <span className={estilos.aspasDecorativas} aria-hidden="true">
-                &#8220;
-              </span>
-              <h2 className={estilos.tituloSecao}>{conteudo.titulo}</h2>
-            </div>
-            <ul className={estilos.listaBeneficios} role="list">
-              <li>Mais segurança para atender.</li>
-              <li>Novas perspectivas para a clínica.</li>
-              <li>Trocas profissionais que continuam depois das aulas.</li>
-              <li>Novas possibilidades de atuação.</li>
-              <li>E, muitas vezes, transformações que ultrapassam o consultório.</li>
-            </ul>
-          </header>
+          <TituloDeSecao
+            rotulo={conteudo.rotulo}
+            titulo={conteudo.titulo}
+            className={estilos.cabecalho}
+          />
         </Revelar>
+      </Container>
 
-        {/* Carrossel com transição suave e esmaecimento temporário à esquerda durante a rotação */}
-        <Revelar atraso={120}>
-          <div className={estilos.carrossel}>
-            {/* Janela de exibição: esmaecimento à esquerda ativado APENAS durante data-rotacionando */}
-            <div
-              className={estilos.janelaContainer}
-              data-rotacionando={rotacionando}
-            >
+      {/* Fora do Container: a fileira atravessa as margens do site */}
+      <Revelar atraso={120}>
+        <div className={estilos.carrossel}>
+          <div className={estilos.janelaContainer}>
               <div
+                ref={trilhoRef}
                 className={estilos.trilho}
-                style={{
-                  transform: `translateX(calc(-1 * ${ativo} * (var(--largura-card) + var(--gap-trilho))))`,
-                }}
-                role="list"
+                onScroll={aoRolar}
+                role="group"
+                aria-roledescription="carrossel"
                 aria-label="Depoimentos de alunos"
               >
-                {lista.map((dep, i) => {
-                  const eAtivo = i === ativo;
+                {cards.map((dep, i) => {
+                  const eAtivo = i === indice;
+                  // Cópias laterais do trilho infinito: existem só para a
+                  // ilusão de continuidade. Ficam fora da árvore de
+                  // acessibilidade e, por isso, também fora da ordem de foco.
+                  const eCopia = total > 1 && (i < total || i >= total * 2);
+                  const eNavegavel = !eAtivo && !eCopia;
                   return (
                     <div
                       key={i}
-                      className={`${estilos.itemCard} ${eAtivo ? estilos.itemDestacado : estilos.itemVazando}`}
+                      aria-hidden={eCopia}
+                      className={cx(estilos.itemCard, !eAtivo && estilos.itemVazando)}
                       onClick={() => !eAtivo && navegarPara(i)}
-                      role={!eAtivo ? 'button' : undefined}
-                      tabIndex={!eAtivo ? 0 : undefined}
+                      // Sem isto o navegador rola sozinho para trazer o card
+                      // focado à vista, atropelando a animação.
+                      onMouseDown={(evento) => !eAtivo && evento.preventDefault()}
+                      role={eNavegavel ? 'button' : undefined}
+                      tabIndex={eNavegavel ? 0 : undefined}
                       aria-label={
-                        !eAtivo ? `Ver depoimento de ${dep.autor}` : undefined
+                        eNavegavel ? `Ver depoimento de ${dep.autor}` : undefined
                       }
                       onKeyDown={(e) => {
                         if (!eAtivo && (e.key === 'Enter' || e.key === ' ')) {
@@ -170,8 +260,9 @@ export function CarrosselDepoimentos() {
               </div>
             </div>
 
-            {/* Barra inferior: progresso + setas */}
-            {total > 1 && (
+          {/* Barra inferior: progresso + setas — de volta à coluna do texto */}
+          {total > 1 && (
+            <Container>
               <div className={estilos.barra}>
                 {/* Linha de progresso */}
                 <div className={estilos.progresso} aria-hidden="true">
@@ -229,10 +320,10 @@ export function CarrosselDepoimentos() {
                   </button>
                 </nav>
               </div>
-            )}
-          </div>
-        </Revelar>
-      </Container>
+            </Container>
+          )}
+        </div>
+      </Revelar>
     </Secao>
   );
 }

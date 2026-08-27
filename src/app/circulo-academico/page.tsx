@@ -25,6 +25,7 @@ export default function PaginaCirculoAcademico() {
       />
 
       <ChamadaDeContato
+        fundo="suave"
         titulo="Estuda Psicologia e quer participar?"
         paragrafo="Entre em contato para saber as datas dos próximos encontros e como se inscrever."
         acaoPrincipal={conteudo.acao}

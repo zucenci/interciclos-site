@@ -1,25 +1,17 @@
 .card {
   display: grid;
-  grid-template-columns: clamp(200px, 160px + 8vw, 270px) 1fr;
+  /* O retrato ocupa cerca de um terço do cartão: menor que isso, ele some ao
+     lado do texto e das três colunas de credenciais. */
+  grid-template-columns: clamp(220px, 180px + 9vw, 320px) 1fr;
   gap: clamp(1.75rem, 1rem + 3vw, 3.5rem);
   align-items: start;
-  padding: clamp(1.75rem, 1.25rem + 2vw, 3rem);
-  background-color: var(--sup-papel);
-  border: 1px solid var(--linha);
-  border-radius: var(--raio-xl);
-  box-shadow: var(--sombra-sutil);
   width: 100%;
-  transition:
-    border-color var(--dur-media) var(--ease-suave),
-    box-shadow var(--dur-media) var(--ease-suave);
-}
-
-.card:hover {
-  border-color: var(--cor-fendi);
-  box-shadow: var(--sombra-media);
 }
 
 .retrato {
+  /* O texto continua ancorado no topo; só o retrato acompanha o centro do
+     cartão, que é mais alto que a foto. */
+  align-self: center;
   position: relative !important;
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -140,6 +132,14 @@
   }
 
   .retrato {
-    max-width: 220px;
+    /* Empilhado, centrar na horizontal é o que faz sentido. A altura vem de um
+       cálculo explícito, e não do aspect-ratio: a imagem é absoluta e não
+       empurra a caixa, então uma altura indefinida some com a foto. */
+    align-self: auto;
+    justify-self: center;
+    width: min(260px, 72vw);
+    height: calc(min(260px, 72vw) * 1.25);
+    max-width: none;
+    margin-inline: auto;
   }
 }

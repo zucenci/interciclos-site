@@ -47,12 +47,28 @@ export function Botao({
   if ('href' in resto && resto.href) {
     const { href, externo } = resto;
     const propsExternas = externo ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-
-    return (
-      <Link href={href} className={classes} {...propsExternas}>
+    const interior = (
+      <>
         <span className={estilos.rotulo}>{children}</span>
         {ehWhatsApp(href) ? <IconeWhatsApp /> : <Seta />}
         {externo && <span className="apenasLeitorDeTela"> (abre em nova aba)</span>}
+      </>
+    );
+
+    // Âncora da própria página: o <a> nativo rola até o alvo (respeitando o
+    // scroll-padding-top do header) sem passar pelo roteador, que trata um
+    // href só de hash como navegação e não move a página.
+    if (href.startsWith('#')) {
+      return (
+        <a href={href} className={classes} {...propsExternas}>
+          {interior}
+        </a>
+      );
+    }
+
+    return (
+      <Link href={href} className={classes} {...propsExternas}>
+        {interior}
       </Link>
     );
   }

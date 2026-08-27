@@ -16,11 +16,40 @@ export function Header() {
   const [compacto, setCompacto] = useState(false);
   const cabecalhoRef = useRef<HTMLElement>(null);
   const idMenu = useId();
+  const timerSubmenu = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelarFechamento = useCallback(() => {
+    if (timerSubmenu.current) {
+      clearTimeout(timerSubmenu.current);
+      timerSubmenu.current = null;
+    }
+  }, []);
+
+  const abrirSubmenu = useCallback(
+    (href: string) => {
+      cancelarFechamento();
+      setSubmenuAberto(href);
+    },
+    [cancelarFechamento],
+  );
+
+  /*
+   * Entre o gatilho e o painel existe um vão de 8px. Fechar no primeiro
+   * mouseleave tira o submenu de baixo do ponteiro no meio do caminho, antes
+   * do clique — daí a pequena carência antes de fechar.
+   */
+  const agendarFechamento = useCallback(() => {
+    cancelarFechamento();
+    timerSubmenu.current = setTimeout(() => setSubmenuAberto(null), 180);
+  }, [cancelarFechamento]);
+
+  useEffect(() => cancelarFechamento, [cancelarFechamento]);
 
   const fecharTudo = useCallback(() => {
+    cancelarFechamento();
     setMenuAberto(false);
     setSubmenuAberto(null);
-  }, []);
+  }, [cancelarFechamento]);
 
   /*
    * Fecha a navegação a cada mudança de rota. Ajustar o estado durante a
@@ -106,8 +135,8 @@ export function Header() {
                 <li
                   key={item.href}
                   className={estilos.itemComSubmenu}
-                  onMouseEnter={() => setSubmenuAberto(item.href)}
-                  onMouseLeave={() => setSubmenuAberto(null)}
+                  onMouseEnter={() => abrirSubmenu(item.href)}
+                  onMouseLeave={agendarFechamento}
                 >
                   <button
                     type="button"
@@ -118,9 +147,10 @@ export function Header() {
                     )}
                     aria-expanded={expandido}
                     aria-controls={idSubmenu}
-                    onClick={() =>
-                      setSubmenuAberto((atual) => (atual === item.href ? null : item.href))
-                    }
+                    onClick={() => {
+                      cancelarFechamento();
+                      setSubmenuAberto((atual) => (atual === item.href ? null : item.href));
+                    }}
                   >
                     {item.rotulo}
                     <Chevron className={estilos.chevron} />

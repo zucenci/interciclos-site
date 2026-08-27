@@ -128,7 +128,10 @@
 
 .imagem {
   object-fit: cover;
-  object-position: center top;
+  /* A foto é retrato (2:3) e a moldura é mais larga: ancorar no topo joga o
+     recorte para o teto do ambiente e corta as pessoas. 30% mantém os rostos
+     dentro do quadro. */
+  object-position: center 30%;
   transition: transform 350ms var(--ease-suave);
 }
 
@@ -143,6 +146,8 @@
   }
 
   .molduraImagem {
-    aspect-ratio: 4 / 3.5;
+    /* Moldura mais alta no empilhado: com 4/3.5 sobrava pouco mais da metade
+       da altura da foto e o corte comia as pessoas. */
+    aspect-ratio: 4 / 4.6;
   }
 }

@@ -31,7 +31,7 @@ export function SeloDezAnos({ className }: Props) {
           <path key={d} className={estilos.anel} d={d} />
         ))}
       </g>
-      <g className={estilos.letreiro}>
+      <g>
         {SELO_NUMERO.map((d) => (
           <path key={d} className={estilos.numero} d={d} />
         ))}

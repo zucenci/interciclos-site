@@ -5,7 +5,9 @@
 .diretoras {
   display: flex;
   flex-direction: column;
-  gap: var(--e-8);
+  /* Sem o contorno dos cartões, é o respiro entre eles que separa uma
+     diretora da outra. */
+  gap: var(--e-10);
 }
 
 .itemDiretora {

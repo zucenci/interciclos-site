@@ -5,6 +5,27 @@
 .lista {
   display: grid;
   gap: var(--e-5);
+  /* Padrão de segurança: sem o modificador de colunas a lista ainda se
+     distribui, em vez de empilhar tudo numa coluna só. */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Quatro fixas: com auto-fit os quatro itens caberiam em três trilhas e o
+   último desceria sozinho. Abaixo de 1080px viram duas e, no celular, uma. */
+.quatroColunas {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1080px) {
+  .quatroColunas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .quatroColunas {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tresColunas {
@@ -73,4 +94,56 @@
 .umaColuna .itemDescricao {
   font-size: var(--t-corpo);
   max-width: var(--largura-texto);
+}
+
+/* =========================================================================
+   Bento: três por fileira, mas a última fileira incompleta não deixa buraco —
+   os cards que sobram se esticam para fechar a linha. A grade tem seis
+   trilhas justamente para permitir as duas divisões (3x2 e 2x3).
+   ========================================================================= */
+.bento {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.bento .item {
+  grid-column: span 2;
+}
+
+/* Sobrou um card sozinho na última fileira: ocupa a largura toda. */
+.bento .item:nth-child(3n + 1):nth-last-child(1) {
+  grid-column: span 6;
+}
+
+/* Sobraram dois: cada um fica com metade. */
+.bento .item:nth-child(3n + 1):nth-last-child(2),
+.bento .item:nth-child(3n + 2):nth-last-child(1) {
+  grid-column: span 3;
+}
+
+@media (max-width: 1080px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bento .item,
+  .bento .item:nth-child(3n + 1):nth-last-child(1),
+  .bento .item:nth-child(3n + 1):nth-last-child(2),
+  .bento .item:nth-child(3n + 2):nth-last-child(1) {
+    grid-column: span 1;
+  }
+
+  .bento .item:nth-child(odd):nth-last-child(1) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .bento .item,
+  .bento .item:nth-child(odd):nth-last-child(1) {
+    grid-column: span 1;
+  }
 }

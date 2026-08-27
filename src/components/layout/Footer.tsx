@@ -11,7 +11,7 @@ export function Footer() {
     <footer className={`${estilos.rodape} emFundoEscuro`}>
       <Container className={estilos.conteudo}>
         <nav className={estilos.blocos} aria-label="Navegação do rodapé">
-          <div className={estilos.bloco}>
+          <div>
             <h2 className={estilos.tituloBloco}>Formações e atividades</h2>
             <ul className={estilos.listaLinks}>
               {rodape.formacoes.map((link) => (
@@ -24,7 +24,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className={estilos.bloco}>
+          <div>
             <h2 className={estilos.tituloBloco}>Instituto</h2>
             <ul className={estilos.listaLinks}>
               {rodape.institucional.map((link) => (
@@ -42,7 +42,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className={estilos.bloco}>
+          <div>
             <h2 className={estilos.tituloBloco}>Contato</h2>
             <ul className={estilos.listaLinks}>
               <li>
