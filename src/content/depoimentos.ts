@@ -4,7 +4,7 @@ export const depoimentos: Depoimento[] = [
   {
     texto:
       'Realizar a formação no InterCiclos foi um marco muito importante na minha trajetória profissional e pessoal. Além da qualidade técnica e do embasamento teórico, encontrei um espaço de aprendizado, acolhimento, troca de experiências, fortalecimento… que contribuíram com o desenvolvimento do olhar clínico e da profissional que sou hoje. A formação ampliou minha compreensão sobre os processos terapêuticos e trouxe ferramentas que fazem a diferença na minha prática clínica diária. Hoje me sinto muito mais segura, preparada e sensível para conduzir os atendimentos. Sou muito grata a Danielle e também a todos os professores que tivemos, pelo compromisso com uma formação de excelência. Recomendo demais a todos os profissionais que desejam aprofundar seus conhecimentos teóricos e do próprio self, pois farão uma transformação na sua prática clínica e na sua vida pessoal!',
-    autor: 'Dalvana',
+    autor: 'Dalvana Zago',
     contexto: 'Especialização em Terapia de Casal e Família',
   },
   {

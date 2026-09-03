@@ -73,6 +73,63 @@ export const especializacao = {
       },
     ],
   },
+  /**
+   * Grade curricular completa. Lista longa e sem descrição por item — a página
+   * a apresenta em colunas, para que a leitura desça cada coluna na ordem em
+   * que as disciplinas acontecem.
+   */
+  conteudoProgramatico: {
+    rotulo: 'Conteúdo',
+    titulo: 'Conteúdo programático',
+    chamada:
+      'As horas teóricas percorrem os fundamentos da abordagem sistêmica e os temas que atravessam a clínica de casais e famílias hoje.',
+    disciplinas: [
+      'Evolução do Pensamento Sistêmico',
+      'Epistemologia',
+      'Bioética',
+      'Terapia Familiar no Brasil',
+      'Escolas Base da Terapia Familiar',
+      'Conceitos e Técnicas da abordagem Sistêmica',
+      'Escolas Contemporâneas de Terapia Familiar I e II',
+      'Ciclo Vital da Família — Rituais, Mitos e Ritos de Passagem',
+      'Teoria do Apego (infantil e adulto)',
+      'Suicídio, morte e doenças crônicas',
+      'Famílias Contemporâneas: transgêneras, monoparentais, homoafetivas, monogâmicas e poligâmicas',
+      'Intimidade conjugal',
+      'Políticas Públicas',
+      'Violência Familiar e Relacionamentos Abusivos',
+      'Relação com o dinheiro',
+      'Infidelidade',
+      'Divórcio',
+      'Trabalhos de Self do Terapeuta',
+      'Atendimentos de casais e famílias em sala de espelho ou supervisão de casos',
+    ],
+  },
+  /** As duas ênfases sob as quais acontecem as horas de prática. */
+  enfases: {
+    rotulo: 'Ênfases',
+    titulo: 'Duas ênfases para a prática clínica',
+    paragrafo:
+      'As horas práticas acontecem em duas ênfases. Ambas partem do atendimento de casais e famílias reais — o que muda é o enquadre em que ele acontece e a forma como é acompanhado.',
+    itens: [
+      {
+        id: 'enfase-1',
+        rotulo: 'Ênfase 1',
+        titulo: 'Sala de espelho com equipe terapêutica',
+        descricao:
+          'O aluno atende casais e famílias em sala de espelho, acompanhado por uma equipe terapêutica que observa o encontro e discute com ele as escolhas feitas em sessão.',
+      },
+      {
+        id: 'enfase-2',
+        rotulo: 'Ênfase 2',
+        /* A quebra é intencional: mantém os dois títulos em duas linhas, e
+           com isso os parágrafos dos cartões começam na mesma altura. */
+        titulo: 'Supervisão de\natendimentos privados',
+        descricao:
+          'Os atendimentos privados de casal e família conduzidos pelo aluno são levados à supervisão, que acompanha de perto as decisões tomadas ao longo de cada caso.',
+      },
+    ],
+  },
   clinicaSocial: {
     titulo: 'Prática clínica desde o primeiro ano',
     paragrafo:
@@ -84,19 +141,32 @@ export const especializacao = {
     titulo: 'Como a formação acontece',
     dados: [
       { rotulo: 'Duração', valor: '2 anos' },
+      { rotulo: 'Carga horária', valor: '360h/a' },
       { rotulo: 'Aulas', valor: 'Mensais, sextas e sábados' },
-      { rotulo: 'Chapecó', valor: 'Presencial' },
-      { rotulo: 'Passo Fundo', valor: 'Formato híbrido' },
+      { rotulo: 'Turmas', valor: 'Vagas limitadas' },
+      { rotulo: 'Chapecó', valor: 'Presencial — 15 vagas' },
+      { rotulo: 'Passo Fundo', valor: 'Formato híbrido — 10 vagas' },
     ] as DadoEstrutural[],
+    /** Divisão das 360h/a entre teoria e prática. */
+    cargaHoraria: {
+      titulo: 'Como se dividem as 360h/a',
+      partes: [
+        { horas: '180h/a', descricao: 'Teóricas' },
+        {
+          horas: '180h/a',
+          descricao: 'Atendimentos práticos e trabalho do self do terapeuta',
+        },
+      ],
+    },
     /** Fora da lista: é a informação que move a decisão de inscrição. */
     novaTurma: { rotulo: 'Nova turma', valor: 'Março de 2027' },
     /**
-     * PENDENTE: validar institucionalmente a redação sobre a parceria com a
-     * Faculdade Mario Quintana e a menção aos requisitos da ABRATEF antes
-     * da publicação (conforme observações do documento de textos).
+     * O reconhecimento pelo MEC e a menção à ABRATEF foram confirmados pela
+     * direção. PENDENTE: validar institucionalmente a redação sobre a parceria
+     * com a Faculdade Mario Quintana antes da publicação.
      */
     certificacao:
-      'A formação é realizada em parceria com a Faculdade Mario Quintana e atende aos requisitos da ABRATEF.',
+      'Formação com reconhecimento pelo MEC, realizada em parceria com a Faculdade Mario Quintana, e que atende aos requisitos da ABRATEF.',
   },
   chamadaFinal: {
     titulo: 'Pronto para começar este ciclo?',

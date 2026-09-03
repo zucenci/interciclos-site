@@ -23,7 +23,7 @@ export const frentes: Frente[] = [
     resumo:
       'Atendimentos supervisionados para alunos da Especialização e acesso à psicoterapia com valores sociais para a comunidade.',
     href: '/clinica-social',
-    formato: ['Atendimentos online', 'Supervisão mensal'],
+    formato: ['Atendimentos online e presencial', 'Supervisão mensal'],
   },
   {
     slug: 'grupos-de-estudos',

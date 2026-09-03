@@ -87,6 +87,93 @@
   max-width: 58ch;
 }
 
+/* =========================================================================
+   Grade curricular: lista longa, sem descrição por item. Em colunas CSS a
+   leitura desce cada coluna e só então passa à seguinte — a ordem das
+   disciplinas se mantém, o que uma grade não daria.
+   ========================================================================= */
+.gradeDisciplinas {
+  columns: 2;
+  column-gap: var(--e-9);
+}
+
+@media (min-width: 1080px) {
+  .gradeDisciplinas {
+    columns: 3;
+  }
+}
+
+@media (max-width: 680px) {
+  .gradeDisciplinas {
+    columns: 1;
+  }
+}
+
+.disciplina {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: baseline;
+  gap: var(--e-4);
+  padding: var(--e-4) 0;
+  border-top: 1px solid var(--linha);
+  /* Impede que um item quebre entre o fim de uma coluna e o início da outra. */
+  break-inside: avoid;
+  font-size: var(--t-corpo);
+  line-height: var(--lh-h4);
+  color: var(--txt-forte);
+}
+
+.disciplinaNumero {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.1em;
+  color: var(--cor-azul);
+}
+
+/* Divisão da carga horária: dois blocos de peso igual dentro da ficha. */
+.cargaHoraria {
+  margin-top: var(--e-6);
+  padding-top: var(--e-6);
+  border-top: 1px solid var(--linha);
+}
+
+.cargaHorariaTitulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--txt-suave);
+}
+
+.cargaHorariaPartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--e-4);
+  margin-top: var(--e-4);
+}
+
+.cargaParte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding: var(--e-5);
+  border-radius: var(--raio);
+  background-color: var(--sup-suave);
+}
+
+.cargaHoras {
+  font-size: var(--t-h3);
+  font-weight: var(--peso-leve);
+  line-height: var(--lh-h3);
+  color: var(--cor-terracota);
+}
+
+.cargaDescricao {
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-pequeno);
+  color: var(--txt-corpo);
+}
+
 /* Ficha da estrutura: cartão claro sobre o fundo nude da seção. */
 .cartaoEstrutura {
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
@@ -166,6 +253,12 @@
 .publicoTitulo {
   font-size: var(--t-h3);
   font-weight: var(--peso-leve);
+}
+
+/* Respeita as quebras escritas no próprio título (ver conteúdo das ênfases).
+   O texto continua reflowando normalmente dentro de cada linha. */
+.tituloComQuebra {
+  white-space: pre-line;
 }
 
 .publicoParagrafo {

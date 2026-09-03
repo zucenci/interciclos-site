@@ -10,12 +10,13 @@ import { ListaDeDados } from '@/components/ui/ListaDeDados';
 import { Revelar } from '@/components/ui/Revelar';
 import { TituloDeSecao } from '@/components/ui/TituloDeSecao';
 import { especializacao as conteudo } from '@/content/paginas/especializacao';
+import { cx } from '@/lib/utils';
 import estilos from '@/styles/pagina.module.css';
 
 export const metadata: Metadata = {
   title: 'Especialização/Formação em Terapia de Casal e Família',
   description:
-    'Percurso teórico-prático de dois anos para psicólogos, com prática clínica supervisionada, desenvolvimento do self do terapeuta e abordagem sistêmica contemporânea. Turmas em Chapecó e Passo Fundo.',
+    'Percurso teórico-prático de dois anos e 360h/a para psicólogos, com duas ênfases de prática clínica supervisionada, desenvolvimento do self do terapeuta e abordagem sistêmica contemporânea. Vagas limitadas em Chapecó e Passo Fundo.',
   alternates: { canonical: '/especializacao' },
 };
 
@@ -25,7 +26,14 @@ export default function PaginaEspecializacao() {
       <CabecalhoDePagina
         conteudo={conteudo.cabecalho}
         variante="destaque"
-        etiquetas={['2 anos', 'Aulas mensais', 'Chapecó — presencial', 'Passo Fundo — híbrido']}
+        etiquetas={[
+          '2 anos',
+          '360h/a',
+          'Aulas mensais',
+          'Chapecó — presencial',
+          'Passo Fundo — híbrido',
+          'Vagas limitadas',
+        ]}
       >
         <Botao href="#estrutura" variante="claro" tamanho="grande">
           Ver estrutura e próxima turma
@@ -70,6 +78,57 @@ export default function PaginaEspecializacao() {
         numerado
       />
 
+      <Secao id="conteudo-programatico" fundo="papel">
+        <Container>
+          <Revelar>
+            <TituloDeSecao
+              rotulo={conteudo.conteudoProgramatico.rotulo}
+              titulo={conteudo.conteudoProgramatico.titulo}
+              chamada={conteudo.conteudoProgramatico.chamada}
+              className={estilos.tituloEstrutura}
+            />
+          </Revelar>
+
+          <Revelar atraso={100} como="ol" className={estilos.gradeDisciplinas}>
+            {conteudo.conteudoProgramatico.disciplinas.map((disciplina, indice) => (
+              <li key={disciplina} className={estilos.disciplina}>
+                <span className={estilos.disciplinaNumero} aria-hidden="true">
+                  {String(indice + 1).padStart(2, '0')}
+                </span>
+                {disciplina}
+              </li>
+            ))}
+          </Revelar>
+        </Container>
+      </Secao>
+
+      <Secao id="enfases" fundo="suave">
+        <Container>
+          <Revelar>
+            <TituloDeSecao
+              rotulo={conteudo.enfases.rotulo}
+              titulo={conteudo.enfases.titulo}
+              chamada={conteudo.enfases.paragrafo}
+              className={estilos.tituloEstrutura}
+            />
+          </Revelar>
+
+          <ul className={estilos.doisPublicos}>
+            {conteudo.enfases.itens.map((enfase, indice) => (
+              <Revelar key={enfase.id} como="li" atraso={indice * 100}>
+                <article className={estilos.publico} id={enfase.id}>
+                  <p className={estilos.publicoRotulo}>{enfase.rotulo}</p>
+                  <h3 className={cx(estilos.publicoTitulo, estilos.tituloComQuebra)}>
+                    {enfase.titulo}
+                  </h3>
+                  <p className={estilos.publicoParagrafo}>{enfase.descricao}</p>
+                </article>
+              </Revelar>
+            ))}
+          </ul>
+        </Container>
+      </Secao>
+
       <Secao fundo="papel">
         <Container>
           <Revelar className={estilos.faixaClinica}>
@@ -96,6 +155,20 @@ export default function PaginaEspecializacao() {
 
           <Revelar atraso={100} className={estilos.cartaoEstrutura}>
             <ListaDeDados dados={conteudo.estrutura.dados} colunas="duas" />
+
+            <div className={estilos.cargaHoraria}>
+              <h3 className={estilos.cargaHorariaTitulo}>
+                {conteudo.estrutura.cargaHoraria.titulo}
+              </h3>
+              <ul className={estilos.cargaHorariaPartes}>
+                {conteudo.estrutura.cargaHoraria.partes.map((parte) => (
+                  <li key={parte.descricao} className={estilos.cargaParte}>
+                    <span className={estilos.cargaHoras}>{parte.horas}</span>
+                    <span className={estilos.cargaDescricao}>{parte.descricao}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className={estilos.rodapeEstrutura}>
               <p className={estilos.certificacao}>{conteudo.estrutura.certificacao}</p>

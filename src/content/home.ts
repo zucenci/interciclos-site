@@ -40,7 +40,7 @@ export const eventosHome = {
    */
   agenda: [] as Evento[],
   acao: {
-    rotulo: 'Falar sobre os próximos encontros',
+    rotulo: 'Falar sobre os próximos eventos',
     href: whatsapp('Olá! Vim pelo site do InterCiclos e gostaria de saber sobre os próximos eventos.'),
     externo: true,
   } as Cta,
