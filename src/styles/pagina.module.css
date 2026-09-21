@@ -224,6 +224,143 @@
   color: var(--cor-terracota);
 }
 
+/* =========================================================================
+   Polos: uma praça por cartão, porque vagas e horários mudam de cidade para
+   cidade e lado a lado ficam comparáveis.
+   ========================================================================= */
+.gradePolos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--e-5);
+}
+
+.polo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+  padding: var(--e-6);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
+  background-color: var(--sup-papel);
+  height: 100%;
+}
+
+.poloCabecalho {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-3);
+}
+
+.poloCidade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e-2);
+  font-size: var(--t-h3);
+  font-weight: var(--peso-leve);
+  line-height: var(--lh-h3);
+}
+
+.poloUf {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  color: var(--cor-terracota);
+}
+
+/* As vagas são o dado que decide: número grande, unidade como legenda. */
+.poloVagas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--linha);
+}
+
+.poloVagasNumero {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-leve);
+  line-height: 1;
+  color: var(--cor-terracota);
+  font-variant-numeric: tabular-nums;
+}
+
+.poloVagasUnidade {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--txt-suave);
+}
+
+/* `margin-top: auto` encosta os horários na base: como os cartões da grade
+   têm a mesma altura, os três blocos ficam alinhados entre si mesmo quando a
+   legenda das vagas ocupa duas linhas. */
+.poloHorarios {
+  display: grid;
+  gap: var(--e-2);
+  margin-top: auto;
+  padding-top: var(--e-5);
+  border-top: 1px solid var(--linha);
+}
+
+.poloRotulo {
+  margin-bottom: var(--e-1);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-azul);
+}
+
+.poloHorario {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+}
+
+.poloDia {
+  color: var(--txt-suave);
+}
+
+.poloHora {
+  font-weight: var(--peso-semi);
+  color: var(--txt-forte);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Direção e núcleos: faixa discreta, é informação de referência. */
+.gradeNucleos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--e-5) var(--e-7);
+  margin-top: var(--e-8);
+  padding: var(--e-6);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-xl);
+  background-color: var(--sup-suave);
+}
+
+.nucleoRotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+}
+
+.nucleoNome {
+  margin-top: var(--e-2);
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-h4);
+  color: var(--txt-forte);
+}
+
 /* Blocos de dois públicos (Clínica Social). */
 .doisPublicos {
   display: grid;

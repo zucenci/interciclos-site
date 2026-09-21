@@ -1,5 +1,6 @@
 import type { Cta, DadoEstrutural } from '../types';
 import { whatsapp } from '../site';
+import { diretoras } from './sobre';
 
 export const especializacao = {
   cabecalho: {
@@ -103,6 +104,7 @@ export const especializacao = {
       'Divórcio',
       'Trabalhos de Self do Terapeuta',
       'Atendimentos de casais e famílias em sala de espelho ou supervisão de casos',
+      'Disciplinas Eletivas Extra',
     ],
   },
   /** As duas ênfases sob as quais acontecem as horas de prática. */
@@ -144,8 +146,6 @@ export const especializacao = {
       { rotulo: 'Carga horária', valor: '360h/a' },
       { rotulo: 'Aulas', valor: 'Mensais, sextas e sábados' },
       { rotulo: 'Turmas', valor: 'Vagas limitadas' },
-      { rotulo: 'Chapecó', valor: 'Presencial — 15 vagas' },
-      { rotulo: 'Passo Fundo', valor: 'Formato híbrido — 10 vagas' },
     ] as DadoEstrutural[],
     /** Divisão das 360h/a entre teoria e prática. */
     cargaHoraria: {
@@ -167,6 +167,60 @@ export const especializacao = {
      */
     certificacao:
       'Formação com reconhecimento pelo MEC, realizada em parceria com a Faculdade Mario Quintana, e que atende aos requisitos da ABRATEF.',
+  },
+  /**
+   * Cada polo tem vagas e horários próprios — por isso saíram da ficha técnica
+   * geral, onde só cabiam os dados comuns às três praças.
+   */
+  polos: {
+    rotulo: 'Onde acontece',
+    titulo: 'Escolha a cidade mais próxima de você',
+    itens: [
+      {
+        cidade: 'Chapecó',
+        uf: 'SC',
+        formato: 'Presencial',
+        vagas: { numero: '15', unidade: 'vagas' },
+        horarios: [
+          { dia: 'Sexta', hora: '18h30 – 22h30' },
+          { dia: 'Sábado', hora: '8h30 – 12h30' },
+        ],
+      },
+      {
+        cidade: 'Passo Fundo',
+        uf: 'RS',
+        formato: 'Presencial',
+        vagas: { numero: '10', unidade: 'vagas' },
+        horarios: [
+          { dia: 'Sexta', hora: '18h30 – 22h30' },
+          { dia: 'Sábado', hora: '8h30 – 12h30' },
+        ],
+      },
+      {
+        cidade: 'Cuiabá',
+        uf: 'MT',
+        formato: 'Presencial',
+        /* As duas ênfases abrem 10 vagas cada — daí a unidade, e não um total. */
+        vagas: { numero: '10', unidade: 'vagas por ênfase' },
+        horarios: [
+          { dia: 'Sexta', hora: '17h30 – 21h30' },
+          { dia: 'Sábado', hora: '7h30 – 12h' },
+        ],
+      },
+    ],
+  },
+  /**
+   * Os nomes da direção vêm de `diretoras` para não divergirem do Sobre, que
+   * é onde as duas trajetórias estão descritas.
+   */
+  direcao: {
+    rotulo: 'Direção e núcleos',
+    titulo: 'Quem conduz a formação',
+    itens: [
+      { rotulo: 'Direção', nomes: diretoras.map((diretora) => diretora.nome) },
+      { rotulo: 'Núcleo RS', nomes: ['Me. Rosângela Andreoli Ortiz'] },
+      { rotulo: 'Núcleo MT', nomes: ['Adriana Ogawa', 'Juliana Felippin'] },
+    ],
   },
   chamadaFinal: {
     titulo: 'Pronto para começar este ciclo?',

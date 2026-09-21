@@ -55,7 +55,8 @@ export const destaqueEspecializacaoHome = {
     { rotulo: 'Duração', valor: '2 anos' },
     { rotulo: 'Aulas', valor: 'Mensais, sextas e sábados' },
     { rotulo: 'Chapecó', valor: 'Presencial' },
-    { rotulo: 'Passo Fundo', valor: 'Formato híbrido' },
+    { rotulo: 'Passo Fundo', valor: 'Presencial' },
+    { rotulo: 'Cuiabá', valor: 'Presencial' },
   ],
   /** Fora da ficha: é a informação que move a decisão de inscrição. */
   novaTurma: { rotulo: 'Nova turma', valor: 'Março de 2027' },

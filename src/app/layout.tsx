@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     'formação em terapia familiar',
     'InterCiclos',
     'Chapecó',
+    'Passo Fundo',
+    'Cuiabá',
   ],
   authors: [{ name: site.nomeCompleto }],
   openGraph: {

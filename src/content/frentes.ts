@@ -14,7 +14,7 @@ export const frentes: Frente[] = [
       'Percurso teórico-prático de dois anos para psicólogos que desejam desenvolver sua atuação a partir da abordagem sistêmica contemporânea.',
     href: '/especializacao',
     ancora: true,
-    formato: ['2 anos', 'Aulas mensais', 'Chapecó e Passo Fundo'],
+    formato: ['2 anos', 'Aulas mensais', 'Chapecó, Passo Fundo e Cuiabá'],
   },
   {
     slug: 'clinica-social',
@@ -23,7 +23,7 @@ export const frentes: Frente[] = [
     resumo:
       'Atendimentos supervisionados para alunos da Especialização e acesso à psicoterapia com valores sociais para a comunidade.',
     href: '/clinica-social',
-    formato: ['Atendimentos online e presencial', 'Supervisão mensal'],
+    formato: ['Atendimentos online', 'Supervisão mensal'],
   },
   {
     slug: 'grupos-de-estudos',

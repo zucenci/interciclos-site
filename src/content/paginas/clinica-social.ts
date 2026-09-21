@@ -18,8 +18,9 @@ export const clinicaSocial = {
       titulo: 'Prática clínica com acompanhamento',
       paragrafos: [
         'Alunos vinculados à Especialização podem participar da Clínica Social e realizar atendimentos supervisionados, aproximando teoria e prática dentro de uma estrutura de acompanhamento clínico.',
+        'Atualmente, os atendimentos da Clínica Social acontecem em formato online.',
       ],
-      condicoes: ['Supervisão obrigatória mensal', 'Atendimentos online e presencial'],
+      condicoes: ['Supervisão obrigatória mensal', 'Atendimentos online'],
       acao: {
         rotulo: 'Quero participar como terapeuta',
         href: whatsapp(
@@ -34,8 +35,9 @@ export const clinicaSocial = {
       titulo: 'Psicoterapia com valores sociais',
       paragrafos: [
         'A Clínica Social possibilita acesso à psicoterapia por meio de atendimentos realizados por profissionais vinculados ao processo de formação do InterCiclos e acompanhados por supervisão.',
+        'No momento, o atendimento é feito em formato online — o que permite acolher pacientes de qualquer cidade.',
       ],
-      condicoes: ['Atendimentos online e presencial', 'Valores sociais'],
+      condicoes: ['Atendimentos online', 'Valores sociais'],
       acao: {
         rotulo: 'Busco atendimento',
         href: whatsapp(

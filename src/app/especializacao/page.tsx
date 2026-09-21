@@ -6,6 +6,7 @@ import { CabecalhoDePagina } from '@/components/secoes/CabecalhoDePagina';
 import { ListaDeItens } from '@/components/secoes/ListaDeItens';
 import { ChamadaDeContato } from '@/components/secoes/ChamadaDeContato';
 import { Botao } from '@/components/ui/Botao';
+import { Etiquetas } from '@/components/ui/Etiquetas';
 import { ListaDeDados } from '@/components/ui/ListaDeDados';
 import { Revelar } from '@/components/ui/Revelar';
 import { TituloDeSecao } from '@/components/ui/TituloDeSecao';
@@ -16,7 +17,7 @@ import estilos from '@/styles/pagina.module.css';
 export const metadata: Metadata = {
   title: 'Especialização/Formação em Terapia de Casal e Família',
   description:
-    'Percurso teórico-prático de dois anos e 360h/a para psicólogos, com duas ênfases de prática clínica supervisionada, desenvolvimento do self do terapeuta e abordagem sistêmica contemporânea. Vagas limitadas em Chapecó e Passo Fundo.',
+    'Percurso teórico-prático de dois anos e 360h/a para psicólogos, com duas ênfases de prática clínica supervisionada, desenvolvimento do self do terapeuta e abordagem sistêmica contemporânea. Vagas limitadas em Chapecó, Passo Fundo e Cuiabá.',
   alternates: { canonical: '/especializacao' },
 };
 
@@ -30,8 +31,7 @@ export default function PaginaEspecializacao() {
           '2 anos',
           '360h/a',
           'Aulas mensais',
-          'Chapecó — presencial',
-          'Passo Fundo — híbrido',
+          'Chapecó · Passo Fundo · Cuiabá',
           'Vagas limitadas',
         ]}
       >
@@ -183,8 +183,64 @@ export default function PaginaEspecializacao() {
         </Container>
       </Secao>
 
+      <Secao id="polos" fundo="papel">
+        <Container>
+          <Revelar>
+            <TituloDeSecao
+              rotulo={conteudo.polos.rotulo}
+              titulo={conteudo.polos.titulo}
+              className={estilos.tituloEstrutura}
+            />
+          </Revelar>
+
+          <ul className={estilos.gradePolos}>
+            {conteudo.polos.itens.map((polo, indice) => (
+              <Revelar key={polo.cidade} como="li" atraso={indice * 100}>
+                <article className={estilos.polo}>
+                  <div className={estilos.poloCabecalho}>
+                    <h3 className={estilos.poloCidade}>
+                      {polo.cidade}
+                      <span className={estilos.poloUf}>{polo.uf}</span>
+                    </h3>
+                    <Etiquetas itens={[polo.formato]} />
+                  </div>
+
+                  <p className={estilos.poloVagas}>
+                    <span className={estilos.poloVagasNumero}>{polo.vagas.numero}</span>
+                    <span className={estilos.poloVagasUnidade}>{polo.vagas.unidade}</span>
+                  </p>
+
+                  <div className={estilos.poloHorarios}>
+                    <p className={estilos.poloRotulo}>Horários</p>
+                    {polo.horarios.map((horario) => (
+                      <p key={horario.dia} className={estilos.poloHorario}>
+                        <span className={estilos.poloDia}>{horario.dia}</span>
+                        <span className={estilos.poloHora}>{horario.hora}</span>
+                      </p>
+                    ))}
+                  </div>
+                </article>
+              </Revelar>
+            ))}
+          </ul>
+
+          <Revelar atraso={100} como="ul" className={estilos.gradeNucleos}>
+            {conteudo.direcao.itens.map((item) => (
+              <li key={item.rotulo}>
+                <p className={estilos.nucleoRotulo}>{item.rotulo}</p>
+                {item.nomes.map((nome) => (
+                  <p key={nome} className={estilos.nucleoNome}>
+                    {nome}
+                  </p>
+                ))}
+              </li>
+            ))}
+          </Revelar>
+        </Container>
+      </Secao>
+
       <ChamadaDeContato
-        fundo="suave"
+        fundo="papel"
         titulo={conteudo.chamadaFinal.titulo}
         paragrafo={conteudo.chamadaFinal.paragrafo}
         acaoPrincipal={conteudo.chamadaFinal.acao}
