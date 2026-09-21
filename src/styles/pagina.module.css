@@ -334,6 +334,16 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* A faixa de contato que fecha a página traz o próprio respiro superior. Sem
+   encurtar a base desta seção, o vão entre os dois blocos soma os dois
+   espaçamentos e abre um buraco — ainda mais agora que as duas compartilham o
+   mesmo fundo e não há troca de cor para justificá-lo.
+   A classe é repetida no seletor de propósito: assim ela vence o
+   `padding-block` de .espaco_padrao sem depender da ordem dos módulos CSS. */
+.secaoAntesDoContato.secaoAntesDoContato {
+  padding-bottom: var(--secao-y-curta);
+}
+
 /* Direção e núcleos: faixa discreta, é informação de referência. */
 .gradeNucleos {
   display: grid;

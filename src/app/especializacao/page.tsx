@@ -183,7 +183,7 @@ export default function PaginaEspecializacao() {
         </Container>
       </Secao>
 
-      <Secao id="polos" fundo="papel">
+      <Secao id="polos" fundo="papel" className={estilos.secaoAntesDoContato}>
         <Container>
           <Revelar>
             <TituloDeSecao
