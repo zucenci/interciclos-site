@@ -224,6 +224,18 @@ export default function PaginaEspecializacao() {
             ))}
           </ul>
 
+          <Revelar atraso={100} className={estilos.legendaEnfases}>
+            <h3 className={estilos.legendaEnfasesTitulo}>{conteudo.polos.legendaTitulo}</h3>
+            <ul className={estilos.legendaEnfasesLista}>
+              {conteudo.polos.legenda.map((item) => (
+                <li key={item.rotulo} className={estilos.legendaEnfase}>
+                  <span className={estilos.legendaEnfaseRotulo}>{item.rotulo}</span>
+                  <span className={estilos.legendaEnfaseDescricao}>{item.descricao}</span>
+                </li>
+              ))}
+            </ul>
+          </Revelar>
+
           <Revelar atraso={100} como="ul" className={estilos.gradeNucleos}>
             {conteudo.direcao.itens.map((item) => (
               <li key={item.rotulo}>

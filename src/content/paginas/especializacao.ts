@@ -175,12 +175,24 @@ export const especializacao = {
   polos: {
     rotulo: 'Onde acontece',
     titulo: 'Escolha a cidade mais próxima de você',
+    /**
+     * Os cartões contam as vagas por ênfase; esta legenda diz o que cada uma
+     * é, para o leitor não precisar voltar à seção das Ênfases.
+     */
+    legendaTitulo: 'O que é cada ênfase',
+    legenda: [
+      {
+        rotulo: 'Ênfase I',
+        descricao: 'Atendimento em sala de espelho com equipe terapêutica',
+      },
+      { rotulo: 'Ênfase II', descricao: 'Supervisão de caso clínico' },
+    ],
     itens: [
       {
         cidade: 'Chapecó',
         uf: 'SC',
         formato: 'Presencial',
-        vagas: { numero: '15', unidade: 'vagas' },
+        vagas: { numero: '15', unidade: 'vagas por ênfase' },
         horarios: [
           { dia: 'Sexta', hora: '18h30 – 22h30' },
           { dia: 'Sábado', hora: '8h30 – 12h30' },
@@ -190,7 +202,7 @@ export const especializacao = {
         cidade: 'Passo Fundo',
         uf: 'RS',
         formato: 'Presencial',
-        vagas: { numero: '10', unidade: 'vagas' },
+        vagas: { numero: '10', unidade: 'vagas por ênfase' },
         horarios: [
           { dia: 'Sexta', hora: '18h30 – 22h30' },
           { dia: 'Sábado', hora: '8h30 – 12h30' },
@@ -200,7 +212,6 @@ export const especializacao = {
         cidade: 'Cuiabá',
         uf: 'MT',
         formato: 'Presencial',
-        /* As duas ênfases abrem 10 vagas cada — daí a unidade, e não um total. */
         vagas: { numero: '10', unidade: 'vagas por ênfase' },
         horarios: [
           { dia: 'Sexta', hora: '17h30 – 21h30' },

@@ -344,6 +344,54 @@
   padding-bottom: var(--secao-y-curta);
 }
 
+/* Legenda das ênfases: vem logo abaixo dos cartões porque é ali que a dúvida
+   nasce — o número grande diz "vagas por ênfase" e esta linha responde o que
+   cada ênfase é. */
+.legendaEnfases {
+  margin-top: var(--e-7);
+}
+
+.legendaEnfasesTitulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--txt-suave);
+}
+
+/* Duas colunas de largura igual, como as partes da carga horária: solto na
+   grade, o par se esticava até as bordas opostas do container e os dois itens
+   deixavam de se ler como um par. */
+.legendaEnfasesLista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--e-4);
+  margin-top: var(--e-4);
+}
+
+.legendaEnfase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: var(--e-5);
+  border-radius: var(--raio);
+  background-color: var(--sup-suave);
+}
+
+.legendaEnfaseRotulo {
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semi);
+  letter-spacing: var(--espaco-letra-rotulo);
+  text-transform: uppercase;
+  color: var(--cor-terracota);
+}
+
+.legendaEnfaseDescricao {
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+  color: var(--txt-corpo);
+}
+
 /* Direção e núcleos: faixa discreta, é informação de referência. */
 .gradeNucleos {
   display: grid;
