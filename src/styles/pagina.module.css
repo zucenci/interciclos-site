@@ -269,29 +269,38 @@
   color: var(--cor-terracota);
 }
 
-/* As vagas são o dado que decide: número grande, unidade como legenda. */
+/* Vagas por ênfase: uma linha para cada, no mesmo formato de ficha dos
+   horários. Chapecó abre números diferentes nas duas ênfases, então o número
+   único de antes deixaria de caber — e a estrutura repetida nos três cartões é
+   o que permite comparar as cidades na vertical. */
 .poloVagas {
-  display: flex;
-  flex-direction: column;
-  gap: var(--e-1);
+  display: grid;
+  gap: var(--e-2);
   padding-top: var(--e-5);
   border-top: 1px solid var(--linha);
 }
 
-.poloVagasNumero {
-  font-size: var(--t-h2);
-  font-weight: var(--peso-leve);
+.poloVaga {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+  font-size: var(--t-pequeno);
+  line-height: var(--lh-texto);
+}
+
+.poloVagaEnfase {
+  color: var(--txt-suave);
+}
+
+/* As vagas pesam mais que os horários: é o dado que decide a inscrição. */
+.poloVagaNumero {
+  font-size: var(--t-h4);
+  font-weight: var(--peso-medio);
   line-height: 1;
   color: var(--cor-terracota);
   font-variant-numeric: tabular-nums;
-}
-
-.poloVagasUnidade {
-  font-size: var(--t-micro);
-  font-weight: var(--peso-semi);
-  letter-spacing: var(--espaco-letra-rotulo);
-  text-transform: uppercase;
-  color: var(--txt-suave);
 }
 
 /* `margin-top: auto` encosta os horários na base: como os cartões da grade

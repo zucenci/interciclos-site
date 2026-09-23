@@ -205,10 +205,15 @@ export default function PaginaEspecializacao() {
                     <Etiquetas itens={[polo.formato]} />
                   </div>
 
-                  <p className={estilos.poloVagas}>
-                    <span className={estilos.poloVagasNumero}>{polo.vagas.numero}</span>
-                    <span className={estilos.poloVagasUnidade}>{polo.vagas.unidade}</span>
-                  </p>
+                  <div className={estilos.poloVagas}>
+                    <p className={estilos.poloRotulo}>Vagas</p>
+                    {polo.vagas.map((vaga) => (
+                      <p key={vaga.enfase} className={estilos.poloVaga}>
+                        <span className={estilos.poloVagaEnfase}>{vaga.enfase}</span>
+                        <span className={estilos.poloVagaNumero}>{vaga.numero}</span>
+                      </p>
+                    ))}
+                  </div>
 
                   <div className={estilos.poloHorarios}>
                     <p className={estilos.poloRotulo}>Horários</p>

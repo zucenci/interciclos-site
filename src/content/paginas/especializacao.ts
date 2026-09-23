@@ -192,7 +192,10 @@ export const especializacao = {
         cidade: 'Chapecó',
         uf: 'SC',
         formato: 'Presencial',
-        vagas: { numero: '15', unidade: 'vagas por ênfase' },
+        vagas: [
+          { enfase: 'Ênfase I', numero: '10' },
+          { enfase: 'Ênfase II', numero: '6' },
+        ],
         horarios: [
           { dia: 'Sexta', hora: '18h30 – 22h30' },
           { dia: 'Sábado', hora: '8h30 – 12h30' },
@@ -202,7 +205,10 @@ export const especializacao = {
         cidade: 'Passo Fundo',
         uf: 'RS',
         formato: 'Presencial',
-        vagas: { numero: '10', unidade: 'vagas por ênfase' },
+        vagas: [
+          { enfase: 'Ênfase I', numero: '6' },
+          { enfase: 'Ênfase II', numero: '6' },
+        ],
         horarios: [
           { dia: 'Sexta', hora: '18h30 – 22h30' },
           { dia: 'Sábado', hora: '8h30 – 12h30' },
@@ -212,7 +218,10 @@ export const especializacao = {
         cidade: 'Cuiabá',
         uf: 'MT',
         formato: 'Presencial',
-        vagas: { numero: '10', unidade: 'vagas por ênfase' },
+        vagas: [
+          { enfase: 'Ênfase I', numero: '10' },
+          { enfase: 'Ênfase II', numero: '10' },
+        ],
         horarios: [
           { dia: 'Sexta', hora: '17h30 – 21h30' },
           { dia: 'Sábado', hora: '7h30 – 12h' },
